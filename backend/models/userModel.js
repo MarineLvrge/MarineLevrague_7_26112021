@@ -1,5 +1,7 @@
 const sequelize = require ('../config/sequelize');
 const { Sequelize, DataTypes } = require ('sequelize');
+const Post = require('./postModel');
+const Like = require('./likeModel');
 
 const User = sequelize.define('User', {
     id_user: {
@@ -37,6 +39,29 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING(50),
         allowNull: false
     }
+}, {
+
 });
+
+User.hasMany(Post, {
+    foreignKey: 'id_user',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Post.belongsTo(User, { foreignKey: 'id_user' });
+
+User.hasMany(Like, {
+    foreignKey: 'id_user',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Like.belongsTo(User, { foreignKey: 'id_user' });
+
+User.hasMany(Comment, {
+    foreignKey: 'id_user',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Comment.belongsTo(User, { foreignKey: 'id_user' });
 
 module.exports = User;

@@ -1,5 +1,6 @@
 const sequelize = require ('../config/sequelize');
 const { Sequelize, DataTypes } = require ('sequelize');
+const Like = require('./likeModel');
 
 const Post = sequelize.define('Post', {
     id_post: {
@@ -24,6 +25,22 @@ const Post = sequelize.define('Post', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+
 });
+
+Post.hasMany(Comment, {
+    foreignKey: 'id_post',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Comment.belongsTo(Post, { foreignKey: 'id_post' })
+
+Post.hasMany(Like, {
+    foreignKey: 'id_post',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Comment.belongsTo(Post, { foreignKey: 'id_post' })
 
 module.exports = Post;
