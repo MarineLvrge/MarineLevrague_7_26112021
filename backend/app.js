@@ -1,19 +1,18 @@
 const express = require ('express');
 const sequelize = require ('./config/sequelize');
+
+// Synchronisation des tables
+//const dbComment = require ('./models/commentModel');
+//const dbLike = require ('./models/likeModel');
+//const dbPost = require ('./models/postModel');
+//const dbUser = require ('./models/userModel');
 //const path = require ('path');
 
-
 // Routes
-
-// Connexion à la DB
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-});
+const userRoutes = require ('./routes/userRouter');
+const postRoutes = require ('./routes/postRouter');
+const likeRoutes = require ('./routes/likeRouter');
+const commentRoutes = require ('./routes/commentRouter');
 
 // Framework express de NodeJS
 const app = express();
@@ -28,9 +27,13 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+
+// Middlewares
+
 //app.use('/images', express.static(path.join(__dirname, 'images')));
-//app.use('/api/auth', usersRoutes);
-//app.use('/api/posts', postsRoutes);
+//app.use('/api/auth', userRoutes);
+//app.use('/api/posts', postRoutes);
+//app.use ('/api/like', likeRoutes);
 //app.use('/api/comments', commentsRoutes);
 
 module.exports = app;
