@@ -1,15 +1,15 @@
 const express = require ('express');
 const sequelize = require ('./config/sequelize');
+const path = require ('path');
 
 // Synchronisation des tables
 //const dbComment = require ('./models/commentModel');
 //const dbLike = require ('./models/likeModel');
 //const dbPost = require ('./models/postModel');
 //const dbUser = require ('./models/userModel');
-//const path = require ('path');
 
 // Routes
-const userRoutes = require ('./routes/userRouter');
+//const userRoutes = require ('./routes/userRouter');
 const postRoutes = require ('./routes/postRouter');
 const likeRoutes = require ('./routes/likeRouter');
 const commentRoutes = require ('./routes/commentRouter');
@@ -34,6 +34,6 @@ app.use(express.json());
 //app.use('/api/auth', userRoutes);
 //app.use('/api/posts', postRoutes);
 //app.use ('/api/like', likeRoutes);
-//app.use('/api/comments', commentsRoutes);
+//app.use('/api/comments', commentRoutes);
 
 module.exports = app;

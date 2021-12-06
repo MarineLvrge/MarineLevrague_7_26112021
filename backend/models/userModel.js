@@ -2,6 +2,7 @@ const sequelize = require ('../config/sequelize');
 const { Sequelize, DataTypes } = require ('sequelize');
 const Post = require('./postModel');
 const Like = require('./likeModel');
+const Comment = require ('./commentModel');
 
 const User = sequelize.define('User', {
     id_user: {
