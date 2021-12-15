@@ -11,13 +11,17 @@ const SignInForm = () => {
         const passwordError = document.querySelector('.password_error');
         
         axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}api/auth/login`,
+            method: "POST",
+            url: `${process.env.REACT_APP_URL}api/auth/login`,
             withCredentials: true,
-            data: {
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
                 email,
                 password
-            },
+            }),
         })
         .then((res) => {
             if (res.data.errors) {
