@@ -14,7 +14,7 @@ const Log = () => {
             setSignUpModal(false);
             setSignInModal(true);
         }
-    }
+    };
 
     return (
         <div className="connection-form">
@@ -24,7 +24,7 @@ const Log = () => {
                     <li onClick={handleModals} id="login" className={signInModal ? "active-btn" : null} >Se connecter</li>
                 </ul>
                 {signUpModal && <SignUpForm />}
-                {signInModal && <SignUpForm />}
+                {signInModal && <SignInForm />}
             </div>
         </div>
     );
