@@ -1,6 +1,7 @@
 const express = require ('express');
 const sequelize = require ('./config/sequelize');
 const path = require ('path');
+const cors = require('cors');
 
 // Synchronisation des tables
 //const dbComment = require ('./models/commentModel');
@@ -9,10 +10,10 @@ const path = require ('path');
 //const dbUser = require ('./models/userModel');
 
 // Routes
-//const userRoutes = require ('./routes/userRouter');
-const postRoutes = require ('./routes/postRouter');
-const likeRoutes = require ('./routes/likeRouter');
-const commentRoutes = require ('./routes/commentRouter');
+const userRoutes = require ('./routes/userRouter');
+//const postRoutes = require ('./routes/postRouter');
+//const likeRoutes = require ('./routes/likeRouter');
+//const commentRoutes = require ('./routes/commentRouter');
 
 // Framework express de NodeJS
 const app = express();
@@ -25,13 +26,15 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(cors());// Use this after the variable declaration
+
 app.use(express.json());
 
 
 // Middlewares
 
-//app.use('/images', express.static(path.join(__dirname, 'images')));
-//app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/auth', userRoutes);
 //app.use('/api/posts', postRoutes);
 //app.use ('/api/like', likeRoutes);
 //app.use('/api/comments', commentRoutes);

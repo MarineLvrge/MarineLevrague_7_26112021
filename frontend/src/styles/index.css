@@ -20,6 +20,7 @@ textarea {
   resize: none;
   border-radius: 20px;
   width: 270px;
+  height: 40px;
   font-family: "Roboto", sans-serif;
   background: #fdfdfd;
 }
@@ -41,7 +42,7 @@ input[type="submit"] {
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1.1rem;
-  border-radius: 20px 6px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
 }
 
 button:hover,
@@ -771,11 +772,5 @@ body {
 
 .connection-form .active-btn {
   background: #ff7b77;
-}
-
-.connection-form form {
-  width: 400px;
-  margin: 10px auto 0;
-  padding: 20px;
 }
 /*# sourceMappingURL=index.css.map */

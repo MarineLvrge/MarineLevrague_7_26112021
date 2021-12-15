@@ -5,7 +5,7 @@ const home = () => {
     return (
         <div className="profile-page">
             <div className="log-container">
-                <Log />
+                <Log signIn={false} signUp={true} />
             </div>
         </div>
     );
