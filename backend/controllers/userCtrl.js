@@ -3,6 +3,7 @@ const jwt = require ('jsonwebtoken');
 const fs = require ('fs');
 const dotenv = require ('dotenv');
 const User = require ('../models/userModel');
+const { signUpErrors, signInErrors } = require('../utils/errorsUtils');
 
 // Création d'un utilisateur
 exports.signup = (req, res, next) => {
@@ -13,6 +14,7 @@ exports.signup = (req, res, next) => {
                 lastName: req.body.lastName,
                 service: req.body.service,
                 email: req.body.email,
+                isAdmin: false,
                 password: hash
             });
             user.save()
@@ -24,6 +26,7 @@ exports.signup = (req, res, next) => {
 
 // Permet à un utilisateur de s'identifier
 exports.login = (req, res, next) => {
+
     User.findOne({ where: {email: req.body.email }})
         .then(user => {
             if (!user) {
@@ -50,6 +53,7 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
+
 
 // Afficher tous les comptes enregistrés
 exports.getAllAccounts = (req, res, next) => {
