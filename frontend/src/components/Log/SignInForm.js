@@ -24,10 +24,10 @@ const SignInForm = () => {
             }),
         })
         .then((res) => {
-            //console.log(res);
-            if (res.data.error) {
-                emailError.innerHTML = res.data.error.email;
-                passwordError.innerHTML = res.data.error.password;
+            console.log(res);
+            if (res.data) {
+                emailError.innerHTML = "L'adresse mail est introuvable";
+                passwordError.innerHTML = "Le mot de passe est incorrect";
             } else {
                 window.location = '/';
             }

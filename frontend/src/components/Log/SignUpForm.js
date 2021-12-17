@@ -9,8 +9,42 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('');
 
     const handleRegister = async (e) => {
+        e.preventDefault();
+        const terms = document.getElementById('terms');
+        const lastNameError = document.querySelector('.lastNameError');
+        const firstNameError = document.querySelector('.firstNameError');
+        const serviceError = document.querySelector('.serviceError');
+        const emailError = document.querySelector('.emailError');
+        const passwordError = document.querySelector('.passwordError');
+        const termsError = document.querySelector('.termsError');
 
-    }
+        if(!terms.checked) {
+            termsError.innerHTML = 'Veuillez valider les conditions générales';
+        } else {
+            await axios ({
+                method: 'POST',
+                url: `${process.env.REACT_APP_URL}api/auth/signup`,
+                data: {
+                    lastName: lastName,
+                    firstName: firstName,
+                    service: service,
+                    email: email,
+                    password: password
+                }
+            })
+            .then((res) => {
+                console.log(res);
+                if(res.data) {
+                    lastNameError.innerHTML = 'Erreur dans le nom';
+                    firstNameError.innerHTML = 'Erreur dans le prénom';
+                    serviceError.innerHTML = 'Erreur dans le service';
+                    emailError.innerHTML = 'Erreur dans le mail';
+                    passwordError.innerHTML = 'Erreur dans le mot de passe';
+                } 
+            })
+            .catch((err) => console.log(err));
+        }
+    };
 
     return (
         <form action='' onSubmit={handleRegister} id='sign-up-form'>
@@ -34,7 +68,7 @@ const SignUpForm = () => {
 
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='text' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} />
+            <input type='email' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} />
             <div className='emailError'></div>
             <br />
 
