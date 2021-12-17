@@ -26,8 +26,9 @@ const SignInForm = () => {
         .then((res) => {
             console.log(res);
             if (res.data) {
-                emailError.innerHTML = "L'adresse mail est introuvable";
-                passwordError.innerHTML = "Le mot de passe est incorrect";
+                emailError.innerHTML = "";
+                passwordError.innerHTML = "";
+                window.location = '/feed';
             } else {
                 window.location = '/';
             }

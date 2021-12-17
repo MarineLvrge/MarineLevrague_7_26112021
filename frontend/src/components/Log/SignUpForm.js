@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import SignInForm from './SignInForm';
 
 const SignUpForm = () => {
+    const [formSubmit, setFormSubmit] = useState(false);
     const [lastName, setLastName] = useState('');
     const [firstName, setFirstName] = useState('');
     const [service, setService] = useState('');
@@ -35,18 +37,28 @@ const SignUpForm = () => {
             .then((res) => {
                 console.log(res);
                 if(res.data) {
-                    lastNameError.innerHTML = 'Erreur dans le nom';
-                    firstNameError.innerHTML = 'Erreur dans le prénom';
-                    serviceError.innerHTML = 'Erreur dans le service';
-                    emailError.innerHTML = 'Erreur dans le mail';
-                    passwordError.innerHTML = 'Erreur dans le mot de passe';
-                } 
+                    lastNameError.innerHTML = '';
+                    firstNameError.innerHTML = '';
+                    serviceError.innerHTML = '';
+                    emailError.innerHTML = '';
+                    passwordError.innerHTML = '';
+                } else {
+                    setFormSubmit(true);
+                }
             })
             .catch((err) => console.log(err));
         }
     };
 
     return (
+        <>
+        {formSubmit ? (
+            <>
+            <SignInForm />
+            <span></span>
+            <h4 className='success'>Inscription réussie avec succès, veuillez vous connecter</h4>
+            </>
+        ) : (
         <form action='' onSubmit={handleRegister} id='sign-up-form'>
             <label htmlFor='lastName'>Nom</label>
             <br />
@@ -87,6 +99,8 @@ const SignUpForm = () => {
 
             <input type='submit' value='Valider inscription' />
         </form>
+        )}
+        </>
     );
 };
 

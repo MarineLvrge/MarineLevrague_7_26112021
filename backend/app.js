@@ -39,7 +39,6 @@ app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
-app.use('/api/auth', authMiddleware);
 //app.use('/api/posts', postRoutes);
 //app.use ('/api/like', likeRoutes);
 //app.use('/api/comments', commentRoutes);
