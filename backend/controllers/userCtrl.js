@@ -3,25 +3,14 @@ const jwt = require ('jsonwebtoken');
 const fs = require ('fs');
 const dotenv = require ('dotenv');
 const User = require ('../models/userModel');
-const { signUpErrors, signInErrors } = require('../utils/errorsUtils');
-
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%^&*])(?=.{8,})/;
 
 // Création d'un utilisateur
 exports.signup = (req, res, next) => {
-    if(!EMAIL_REGEX.test(req.body.email)){
-        return res.status(400).json({ error: 'Email incorrect' });
-    }
-    if(!PASSWORD_REGEX.test(req.body.password)){
-        return res.status(401).json({ error: 'Minimum 1 majuscule, 1 minuscule, 1 chiffre, et 1 caractère spécial (!.@#$%^&*)'})
-    };
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                service: req.body.service,
                 email: req.body.email,
                 isAdmin: false,
                 password: hash

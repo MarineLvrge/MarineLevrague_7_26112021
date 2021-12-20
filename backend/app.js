@@ -3,15 +3,10 @@ const sequelize = require ('./config/sequelize');
 const path = require ('path');
 const cors = require('cors');
 
-// Synchronisation des tables
-//const dbComment = require ('./models/commentModel');
-//const dbLike = require ('./models/likeModel');
-//const dbPost = require ('./models/postModel');
-//const dbUser = require ('./models/userModel');
 
 // Routes
 const userRoutes = require ('./routes/userRouter');
-const authMiddleware = require ('./middleware/auth');
+const auth = require ('./middleware/auth');
 //const postRoutes = require ('./routes/postRouter');
 //const likeRoutes = require ('./routes/likeRouter');
 //const commentRoutes = require ('./routes/commentRouter');

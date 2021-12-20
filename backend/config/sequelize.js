@@ -25,7 +25,7 @@ sequelize.authenticate()
 });
 
 // Synchronisation des modèles avec la DB
-sequelize.sync()
+sequelize.sync(/*{ force: true }*/)
   .then(() => {
     console.log('Synchronized to Database');
 })

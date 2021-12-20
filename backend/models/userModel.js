@@ -35,10 +35,6 @@ const User = sequelize.define('User', {
     isAdmin: {
         type: DataTypes.BOOLEAN,
         allowNull: true
-    },
-    service: {
-        type: DataTypes.STRING(50),
-        allowNull: false
     }
 }, {
 

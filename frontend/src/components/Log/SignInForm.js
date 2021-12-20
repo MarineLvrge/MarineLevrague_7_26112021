@@ -7,8 +7,9 @@ const SignInForm = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const emailError = document.querySelector('.email_error');
-        const passwordError = document.querySelector('.password_error');
+        //const emailError = document.querySelector('.email_error');
+        //const passwordError = document.querySelector('.password_error');
+        const emailOrPasswordError = document.querySelector('.error');
         
         axios({
             method: "POST",
@@ -24,17 +25,12 @@ const SignInForm = () => {
             }),
         })
         .then((res) => {
-            console.log(res);
-            if (res.data) {
-                emailError.innerHTML = "";
-                passwordError.innerHTML = "";
-                window.location = '/feed';
-            } else {
-                window.location = '/';
-            }
+            console.log(res.data);
+            sessionStorage.setItem('userAuth', JSON.stringify(res.data));
+            window.location = '/feed';
         })
         .catch((err) => {
-            console.log(err);
+            emailOrPasswordError.innerHTML = 'Adresse mail ou mot de passe invalide';
         });
     };
 
@@ -52,6 +48,7 @@ const SignInForm = () => {
             <div className='password_error'></div>
             <br />
 
+            <div className='error'></div>
             <input type='submit' value='Se connecter' />
         </form>
     );

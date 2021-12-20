@@ -13,7 +13,7 @@ const App = () => {
     const fetchToken = async () => {
       await axios({
         method: "GET",
-        url: `${process.env.REACT_APP_URL}api/auth/`,
+        url: `${process.env.REACT_APP_URL}api/auth`,
         withCredentials: true,
       })
       .then((res) => {
