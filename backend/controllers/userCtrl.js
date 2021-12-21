@@ -6,12 +6,15 @@ const User = require ('../models/userModel');
 
 // Création d'un utilisateur
 exports.signup = (req, res, next) => {
+    let profilPictureDefault = `${req.protocol}://${req.get('host')}/images/profilePictures/profilpic.webp`;
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
+                bio: '...',
+                profilPicture: profilPictureDefault,
                 isAdmin: false,
                 password: hash
             });
@@ -72,8 +75,15 @@ exports.getOneAccount = (req, res, next) => {
 
 // Modifier un compte
 exports.modifyAccount = (req, res, next) => {
-
-}
+    if(req.file) {
+        User.findByPk(req.params.id_user)
+        .then(user => {
+            const filename = user.profilPicture.split('/images/profilePictures/')[1];
+            fs.unlink(`images/profilePictures/${filename}`, () => {console.log('Fichier image supprimé')});
+        })
+        .catch(error => res.status(400).json({ error }));
+    }
+};
 
 // Supprimer un compte
 exports.deleteAccount = (req, res, next) => {
