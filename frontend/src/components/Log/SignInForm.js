@@ -1,57 +1,52 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
-const SignInForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+function SignInForm() {
+    const { register, handleSubmit, formState: {errors} } = useForm({
+        mode: 'onTouched'
+    });
+    const {isSubmitting} = errors;
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        //const emailError = document.querySelector('.email_error');
-        //const passwordError = document.querySelector('.password_error');
-        const emailOrPasswordError = document.querySelector('.error');
-        
-        axios({
-            method: "POST",
-            url: `${process.env.REACT_APP_URL}api/auth/login`,
-            withCredentials: true,
-            headers: { 
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify({
-                email,
-                password
-            }),
-        })
-        .then((res) => {
+    const onSubmit = data => {
+        axios.post(`${process.env.REACT_APP_URL}api/auth/login`,
+        {email: data.email, password: data.password })
+        .then(res => {
             console.log(res.data);
-            sessionStorage.setItem('userAuth', JSON.stringify(res.data));
             window.location = '/feed';
+            const storageToken = {
+                "userId": res.data.userId,
+                "token": res.data.token
+            }
+            sessionStorage.setItem("storageToken", JSON.stringify(storageToken));
+            // Données à ajouter ici
+            // Et ici
         })
-        .catch((err) => {
-            emailOrPasswordError.innerHTML = 'Adresse mail ou mot de passe invalide';
-        });
-    };
+        .catch(err => {"Erreur dans l'authentification"});
+    }
+
+console.log(errors);
 
     return (
-        <form action='' onSubmit={handleLogin} id='sign-up-form'>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='text' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} required />
-            <div className='email_error'></div>
+            <input type='text' name='email' id='email' placeholder='johndoe@gmail.com'{...register('email', {required: true, pattern: /^[\w_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/g})} />
+            <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
+            <div className='error'>{errors.email?.type === 'pattern' && "Veuillez entrer une adresse mail valide"}</div>
             <br />
 
             <label htmlFor='password'>Mot de passe</label>
             <br />
-            <input type='password' name='password' id='password' onChange={(e) => setPassword(e.target.value)} value={password} required />
-            <div className='password_error'></div>
+            <input type='password' name='password' id='password' {...register('password', {required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/})} />
+            <div className='error'>{errors.password?.type === 'required' && "Vous devez entrer un mot de passe"}</div>
+            <div className='error'>{errors.password?.type === 'pattern' && "Votre mot de passe doit contenir: 8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"}</div>
             <br />
 
-            <div className='error'></div>
-            <input type='submit' value='Se connecter' />
+            <button type='submit' disabled={isSubmitting}>Se connecter</button>
+
         </form>
     );
+    
 };
 
 export default SignInForm;

@@ -6,7 +6,7 @@ function SignUpForm () {
         mode: 'onTouched'
     });
     const {isSubmitting} = errors;
-       
+
 const onSubmit =  data => {
     axios.post(`${process.env.REACT_APP_URL}api/auth/signup`,
     {lastName: data.lastName, firstName: data.firstName, email: data.email, password: data.password })
@@ -16,7 +16,7 @@ const onSubmit =  data => {
             "userId": res.data.userId,
             "token": res.data.token
         }
-        localStorage.setItem("storageToken", JSON.stringify(storageToken));
+        sessionStorage.setItem("storageToken", JSON.stringify(storageToken));
         // Données à ajouter ici
         // Et ici
     })
@@ -56,10 +56,9 @@ console.log(errors);
             <input type='password' name='password' id='password' {...register('password', {required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/})}/>
             <div className='error'>{errors.password?.type === 'required' && "Vous devez entrer un mot de passe"}</div>
             <div className='error'>{errors.password?.type === 'pattern' && "Votre mot de passe doit contenir: 8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"}</div>
-
             <br />
 
-            <button disabled={isSubmitting}>Valider inscription</button>
+            <button type='submit' disabled={isSubmitting}>Valider inscription</button>
         </form>
 )}
 
