@@ -38,13 +38,13 @@ const SignInForm = () => {
         <form action='' onSubmit={handleLogin} id='sign-up-form'>
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='text' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} />
+            <input type='text' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} required />
             <div className='email_error'></div>
             <br />
 
             <label htmlFor='password'>Mot de passe</label>
             <br />
-            <input type='password' name='password' id='password' onChange={(e) => setPassword(e.target.value)} value={password} />
+            <input type='password' name='password' id='password' onChange={(e) => setPassword(e.target.value)} value={password} required />
             <div className='password_error'></div>
             <br />
 

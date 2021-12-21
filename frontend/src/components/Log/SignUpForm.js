@@ -1,97 +1,67 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import SignInForm from './SignInForm';
+import { useForm } from 'react-hook-form';
 
-const SignUpForm = () => {
-    const [formSubmit, setFormSubmit] = useState(false);
-    const [lastName, setLastName] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        const terms = document.getElementById('terms');
-        const lastNameError = document.querySelector('.lastNameError');
-        const firstNameError = document.querySelector('.firstNameError');
-        const emailError = document.querySelector('.emailError');
-        const passwordError = document.querySelector('.passwordError');
-        const termsError = document.querySelector('.termsError');
-
-        if(!terms.checked) {
-            termsError.innerHTML = 'Veuillez valider les conditions générales';
-        } else {
-            axios({
-                method: 'POST',
-                url: `${process.env.REACT_APP_URL}api/auth/signup`,
-                data: {
-                    lastName: lastName,
-                    firstName: firstName,
-                    email: email,
-                    password: password
-                }
-            })
-            .then((res) => {
-                console.log(res);
-                if(res.data) {
-                    lastNameError.innerHTML = '';
-                    firstNameError.innerHTML = '';
-                    emailError.innerHTML = '';
-                    passwordError.innerHTML = '';
-                } else {
-                    setFormSubmit(true);
-                }
-            })
-            .catch((err) => console.log(err));
+function SignUpForm () {
+    const { register, handleSubmit, formState: {errors} } = useForm({
+        mode: 'onTouched'
+    });
+    const {isSubmitting} = errors;
+       
+const onSubmit =  data => {
+    axios.post(`${process.env.REACT_APP_URL}api/auth/signup`,
+    {lastName: data.lastName, firstName: data.firstName, email: data.email, password: data.password })
+    .then(res => {
+        console.log(res.data);
+        const storageToken = {
+            "userId": res.data.userId,
+            "token": res.data.token
         }
-    };
+        localStorage.setItem("storageToken", JSON.stringify(storageToken));
+        // Données à ajouter ici
+        // Et ici
+    })
+    .catch(err => { 'Ceci est une erreur'});
+}
+
+console.log(errors);
 
     return (
-        <>
-        {formSubmit ? (
-            <>
-            <SignInForm />
-            <span></span>
-            <h4 className='success'>Inscription réussie avec succès, veuillez vous connecter</h4>
-            </>
-        ) : (
-        <form action='' onSubmit={handleRegister} id='sign-up-form'>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='lastName'>Nom</label>
             <br />
-            <input type='text' name='lastName' id='lastName' onChange={(e) => setLastName(e.target.value)} value={lastName} />
-            <div className='lastNameError'></div>
+            <input type='text' name='lastName' id='lastName' placeholder='Doe' {...register('lastName', {required: true, minLength: 3, pattern: /^[A-Za-z]+$/i})} />
+            
+            <div className='error'>{errors.lastName?.type === 'required' && "Vous devez entrer un nom"}</div>
+            <div className='error'>{errors.lastName?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
+            <div className='error'>{errors.lastName?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
             <br />
 
             <label htmlFor='firstName'>Prénom</label>
             <br />
-            <input type='text' name='firstName' id='firstName' onChange={(e) => setFirstName(e.target.value)} value={firstName} />
-            <div className='firstNameError'></div>
+            <input type='text' name='firstName' id='firstName' placeholder='John' {...register('firstName', {required: true, minLength: 3, pattern: /^[A-Za-z]+$/i})}/>
+            <div className='error'>{errors.firstName?.type === 'required' && "Vous devez entrer un prénom"}</div>
+            <div className='error'>{errors.firstName?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
+            <div className='error'>{errors.firstName?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
             <br />
 
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='email' name='email' id='email' onChange={(e) => setEmail(e.target.value)} value={email} />
-            <div className='emailError'></div>
+            <input type='email' name='email' id='email' placeholder='johndoe@gmail.com'{...register('email', {required: true, pattern: /^[\w_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/g})}/>
+            <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
+            <div className='error'>{errors.email?.type === 'pattern' && "Veuillez entrer une adresse mail valide"}</div>
             <br />
 
             <label htmlFor='password'>Mot de passe</label>
             <br />
-            <input type='password' name='password' id='password' onChange={(e) => setPassword(e.target.value)} value={password} />
-            <div className='passwordError'></div>
+            <input type='password' name='password' id='password' {...register('password', {required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/})}/>
+            <div className='error'>{errors.password?.type === 'required' && "Vous devez entrer un mot de passe"}</div>
+            <div className='error'>{errors.password?.type === 'pattern' && "Votre mot de passe doit contenir: 8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"}</div>
+
             <br />
 
-            <div className='termsConditions'>
-            <input type='checkbox' id='terms' />
-            <label htmlFor='terms'>J'accepte les <a href='/' target='_blank' rel='noopener noreferrer'>{' '}conditions générales</a></label>
-            </div>
-            <div className='termsError'></div>
-            <br />
-
-            <input type='submit' value='Valider inscription' />
+            <button disabled={isSubmitting}>Valider inscription</button>
         </form>
-        )}
-        </>
-    );
-};
+)}
+
 
 export default SignUpForm;
