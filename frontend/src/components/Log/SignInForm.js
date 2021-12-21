@@ -37,7 +37,7 @@ console.log(errors);
 
             <label htmlFor='password'>Mot de passe</label>
             <br />
-            <input type='password' name='password' id='password' {...register('password', {required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/})} />
+            <input type='password' name='password' id='password' placeholder='Mot de passe' {...register('password', {required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/})} />
             <div className='error'>{errors.password?.type === 'required' && "Vous devez entrer un mot de passe"}</div>
             <div className='error'>{errors.password?.type === 'pattern' && "Votre mot de passe doit contenir: 8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"}</div>
             <br />
