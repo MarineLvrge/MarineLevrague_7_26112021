@@ -7,7 +7,7 @@ const cors = require('cors');
 // Routes
 const userRoutes = require ('./routes/userRouter');
 const auth = require ('./middleware/auth');
-//const postRoutes = require ('./routes/postRouter');
+const postRoutes = require ('./routes/postRouter');
 //const likeRoutes = require ('./routes/likeRouter');
 //const commentRoutes = require ('./routes/commentRouter');
 
@@ -34,7 +34,7 @@ app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
-//app.use('/api/posts', postRoutes);
+app.use('/api/posts', postRoutes);
 //app.use ('/api/like', likeRoutes);
 //app.use('/api/comments', commentRoutes);
 

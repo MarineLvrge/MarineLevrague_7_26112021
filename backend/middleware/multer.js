@@ -11,6 +11,14 @@ const MIME_TYPES = {
     'images/webp': 'webp'
 };
 
+const filesAccepted = (req, res, next) => {
+    if(MIME_TYPES.includes(file.mimetype)) {
+        callback(null, true);
+    } else {
+        return callback(new Error('Les formats acceptés sont: jpg, jpeg, png, gif et webp'), false);
+    }
+}
+
 const storagePosts = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'images/posts') // On indique à multer dans quel dossier sauvegarder les fichiers
@@ -22,7 +30,7 @@ const storagePosts = multer.diskStorage({
     }
 });
 
-const storageProfilPicture = multer.diskStorage({
+const storageProfilePictures = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'images/profilePictures') // On indique à multer dans quel dossier sauvegarder les fichiers
     },
@@ -34,5 +42,5 @@ const storageProfilPicture = multer.diskStorage({
 });
 
 // On exporte multer en lui indiquant que nous gérerons uniquement les téléchargements de fichiers image
-module.exports = multer({ storage: storagePosts }).single('image');
-module.exports = multer({ storage: storageProfilPicture }).single('image');
+module.exports = multer({filesAccepted, storage: storagePosts }).single('image');
+module.exports = multer({filesAccepted, storage: storageProfilePictures }).single('image');

@@ -1,7 +1,7 @@
 const bcrypt = require ('bcrypt');
 const jwt = require ('jsonwebtoken');
 const fs = require ('fs');
-const dotenv = require ('dotenv');
+require ('dotenv').config({path: '../config/.env'});
 const User = require ('../models/userModel');
 
 // Création d'un utilisateur
@@ -50,9 +50,9 @@ exports.login = (req, res, next) => {
                         )
                     });
                 })
-                .catch(error => res.status(500).json({ error }));
+                .catch(error => res.status(500).json({ error, message: 'Erreur de connexion' }));
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error, message: "L'utilisateur n'a pas pu être trouvé" }));
 };
 
 // Afficher un compte
@@ -62,7 +62,7 @@ exports.getOneAccount = (req, res, next) => {
         attributes: { exclude: ['email', 'password']},
     })
     .then( user => res.status(200).json(user))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => res.status(400).json({ error, message: 'Une erreur est survenue lors de la récupération de ce compte' }));
 };
 
 // Modifier un compte
@@ -75,7 +75,7 @@ exports.modifyAccount = (req, res, next) => {
                 fs.unlink(`images/profilePictures/${filename}`, () => {console.log('Fichier image supprimé')});
             }   
         })
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ error, message: 'Une erreur est survenue lors de la suppression du fichier' }));
 };
 
 const user = req.file ? {
@@ -96,7 +96,7 @@ User.update(user,
         }
     })
 .then(() => res.status(200).json({ message: 'Ce compte a bien été modifié' }))
-.catch((error)=> res.status(500).json({ message: 'Une erreur est survenue dans la modification du compte' }));
+.catch((error)=> res.status(500).json({ error, message: 'Une erreur est survenue dans la modification du compte' }));
 
 };
 
@@ -108,5 +108,5 @@ exports.deleteAccount = (req, res, next) => {
         }
     })
     .then(() => res.status(200).json({ message: 'Ce compte a bien été supprimé' }))
-    .catch((error) => res.status(500).json({ message: 'Une erreur est survenue lors de la suppression de ce compte'}));
+    .catch((error) => res.status(500).json({ error, message: 'Une erreur est survenue lors de la suppression de ce compte'}));
 };
