@@ -44,8 +44,8 @@ exports.login = (req, res, next) => {
                     res.status(200).json({ 
                         userId: user.id_user,
                         token: jwt.sign(
-                            { userId: user.id_user },
-                            process.env.SECRET_TOKEN,
+                            { userId: user.id_user, isAdmin: user.isAdmin },
+                            `${process.env.SECRET_TOKEN}`,
                             { expiresIn: '24h' }
                         )
                     });
@@ -53,14 +53,6 @@ exports.login = (req, res, next) => {
                 .catch(error => res.status(500).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
-};
-
-
-// Afficher tous les comptes enregistrés
-exports.getAllAccounts = (req, res, next) => {
-    User.findAll()
-        .then(users => res.status(200).json(users))
-        .catch(error => res.status(400).json({ error }));
 };
 
 // Afficher un compte
@@ -78,14 +70,43 @@ exports.modifyAccount = (req, res, next) => {
     if(req.file) {
         User.findByPk(req.params.id_user)
         .then(user => {
-            const filename = user.profilPicture.split('/images/profilePictures/')[1];
-            fs.unlink(`images/profilePictures/${filename}`, () => {console.log('Fichier image supprimé')});
+            if(user.profilPicture) {
+                const filename = user.profilPicture.split('/images/profilePictures/')[1];
+                fs.unlink(`images/profilePictures/${filename}`, () => {console.log('Fichier image supprimé')});
+            }   
         })
         .catch(error => res.status(400).json({ error }));
-    }
+};
+
+const user = req.file ? {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    bio: req.body.bio,
+    profilPicture: `${req.protocol}://${req.get('host')}/images/profilePictures/${req.file.filename}`
+} : {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    bio: req.body.bio
+};
+
+User.update(user, 
+    {
+        where: {
+            id_user: req.params.id_user
+        }
+    })
+.then(() => res.status(200).json({ message: 'Ce compte a bien été modifié' }))
+.catch((error)=> res.status(500).json({ message: 'Une erreur est survenue dans la modification du compte' }));
+
 };
 
 // Supprimer un compte
 exports.deleteAccount = (req, res, next) => {
-    
-}
+    User.destroy({
+        where: {
+            id_user: req.params.id_user
+        }
+    })
+    .then(() => res.status(200).json({ message: 'Ce compte a bien été supprimé' }))
+    .catch((error) => res.status(500).json({ message: 'Une erreur est survenue lors de la suppression de ce compte'}));
+};
