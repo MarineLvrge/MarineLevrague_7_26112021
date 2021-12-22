@@ -10,9 +10,7 @@ exports.createPost = (req, res, next) => {
         title: req.body.title,
         content: req.body.content,
         attachment: `${req.protocol}://${req.get('host')}/images/posts/${req.filename}`,
-        id_user: req.body.id_user,
-        createdAt: req.body.createAt,
-        updatedAt: req.body.updatedAt
+        id_user: req.body.id_user
     })
     .then(() => res.status(201).json({ message: 'Publication créée avec succès' }))
     .catch((error) => res.status(500).json({ error, message: 'Une erreur est survenue lors de la création de la publication' }));
@@ -21,7 +19,9 @@ exports.createPost = (req, res, next) => {
 // Modification d'une publication
 exports.modifyPost = (req, res, next) => {
     Post.update({
-        title: req.body.title
+        title: req.body.title,
+        content: req.body.content,
+        //attachment: 
     }, {
         where: {
             id_post: req.params.id_post
