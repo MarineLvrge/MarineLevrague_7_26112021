@@ -2,7 +2,6 @@ const Post = require ('../models/postModel');
 const fs = require ('fs');
 const jwt = require ('jsonwebtoken');
 const User = require ('../models/userModel');
-const { post } = require('../routes/postRouter');
 require ('dotenv').config({path: '../config/.env'});
 
 // Création d'une publication
