@@ -9,7 +9,7 @@ exports.createPost = (req, res, next) => {
     Post.create({
         title: req.body.title,
         content: req.body.content,
-        attachment: `${req.protocol}://${req.get('host')}/images/posts/${req.filename}`,
+        attachment: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,
         id_user: req.body.id_user
     })
     .then(() => res.status(201).json({ message: 'Publication créée avec succès' }))
@@ -18,18 +18,35 @@ exports.createPost = (req, res, next) => {
 
 // Modification d'une publication
 exports.modifyPost = (req, res, next) => {
-    Post.update({
+    if(req.file) {
+        Post.findByPk(req.params.id_post)
+        .then(post => {
+            if(post.attachment) {
+                const filename = post.attachment.split('/images/posts/')[1];
+                fs.unlink(`images/posts/${filename}`, () => {console.log('Fichier supprimé')});
+            }
+        })
+        .catch(error => res.status(400).json({ error, message: 'Ce fichier n\'a pas pu être supprimé' }));
+    };
+    const post = req.file ? {
         title: req.body.title,
         content: req.body.content,
-        //attachment: 
-    }, {
-        where: {
-            id_post: req.params.id_post
-        }
+        attachment: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`
+    } : {
+        title: req.body.title,
+        content: req.body.content
+    };
+
+    Post.update(post,
+       {
+            where: {
+                id_post: req.params.id_post
+            }
     })
     .then(() => res.status(200).json({ message: 'Publication modifiée avec succès' }))
     .catch((error) => res.status(500).json({ error, message: 'Une erreur est survenue lors de la modification de la publication' }));
 };
+
 
 // Suppression d'une publication
 exports.deletePost = (req, res, next) => {
