@@ -2,6 +2,7 @@ const Post = require ('../models/postModel');
 const fs = require ('fs');
 const jwt = require ('jsonwebtoken');
 const User = require ('../models/userModel');
+const { post } = require('../routes/postRouter');
 require ('dotenv').config({path: '../config/.env'});
 
 // Création d'une publication
@@ -50,14 +51,24 @@ exports.modifyPost = (req, res, next) => {
 
 // Suppression d'une publication
 exports.deletePost = (req, res, next) => {
-    Post.destroy({
+        Post.findByPk(req.params.id_post)
+        .then(post => {
+            if(post.attachment) {
+                const filename = post.attachment.split('/images/posts/')[1];
+                fs.unlink(`images/posts/${filename}`, () => {console.log('Fichier supprimé')});
+            }
+        })
+        .catch(error => res.status(400).json({ error, message: 'Ce fichier n\'a pas pu être supprimé' }));
+
+    Post.destroy(
+        {
         where: {
             id_post: req.params.id_post
         }
     })
     .then(() => res.status(200).json({ message: 'Publication supprimée avec succès' }))
     .catch((error) => res.status(500).json({ error, message: 'Une erreur est survenue lors de la suppression de cette publication' }));
-}
+};
 
 // Récupération de toutes les publications
 exports.getAllPosts = (req, res, next) => {
