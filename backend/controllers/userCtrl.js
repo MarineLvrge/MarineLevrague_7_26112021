@@ -5,7 +5,7 @@ require ('dotenv').config({path: '../config/.env'});
 const User = require ('../models/userModel');
 
 // Création d'un utilisateur
-exports.signup = (req, res, next) => {
+exports.signup = (req, res, next) => { // Les copiers/collers c'est mal
     let profilPictureDefault = `${req.protocol}://${req.get('host')}/images/profilePictures/profilpic.webp`;
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -26,7 +26,7 @@ exports.signup = (req, res, next) => {
 };
 
 // Permet à un utilisateur de s'identifier
-exports.login = (req, res, next) => {
+exports.login = (req, res, next) => { // Les copiers/collers c'est mal
 
     User.findOne({ where: {email: req.body.email }})
         .then(user => {
@@ -56,7 +56,7 @@ exports.login = (req, res, next) => {
 };
 
 // Afficher un compte
-exports.getOneAccount = (req, res, next) => {
+exports.getOneAccount = (req, res, next) => { // Les copiers/collers c'est mal
     User.findOne({
         where: { id_user: req.params.id_user },
         attributes: { exclude: ['email', 'password']},
@@ -66,7 +66,7 @@ exports.getOneAccount = (req, res, next) => {
 };
 
 // Modifier un compte
-exports.modifyAccount = (req, res, next) => {
+exports.modifyAccount = (req, res, next) => { // Les copiers/collers c'est mal
     if(req.file) {
         User.findByPk(req.params.id_user)
         .then(user => {
@@ -101,7 +101,7 @@ User.update(user,
 };
 
 // Supprimer un compte
-exports.deleteAccount = (req, res, next) => {
+exports.deleteAccount = (req, res, next) => { // Les copiers/collers c'est mal
     User.destroy({
         where: {
             id_user: req.params.id_user

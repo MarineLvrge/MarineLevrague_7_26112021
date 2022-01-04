@@ -11,3 +11,5 @@ router.put('/accounts/:id_user', auth, multer.profilePicture, userCtrl.modifyAcc
 router.delete('/accounts/:id_user', auth, userCtrl.deleteAccount);
 
 module.exports = router;
+
+// Les copiers/collers c'est mal

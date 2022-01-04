@@ -5,7 +5,7 @@ const User = require ('../models/userModel');
 require ('dotenv').config({path: '../config/.env'});
 
 // Création d'une publication
-exports.createPost = (req, res, next) => {
+exports.createPost = (req, res, next) => { // Les copiers/collers c'est mal
     Post.create({
         title: req.body.title,
         content: req.body.content,
@@ -17,7 +17,7 @@ exports.createPost = (req, res, next) => {
 };
 
 // Modification d'une publication
-exports.modifyPost = (req, res, next) => {
+exports.modifyPost = (req, res, next) => { // Les copiers/collers c'est mal
     if(req.file) {
         Post.findByPk(req.params.id_post)
         .then(post => {
@@ -49,7 +49,7 @@ exports.modifyPost = (req, res, next) => {
 
 
 // Suppression d'une publication
-exports.deletePost = (req, res, next) => {
+exports.deletePost = (req, res, next) => { // Les copiers/collers c'est mal
         Post.findByPk(req.params.id_post)
         .then(post => {
             if(post.attachment) {
@@ -70,7 +70,7 @@ exports.deletePost = (req, res, next) => {
 };
 
 // Récupération de toutes les publications
-exports.getAllPosts = (req, res, next) => {
+exports.getAllPosts = (req, res, next) => { // Les copiers/collers c'est mal
     Post.findAll({
         include: [{
             model: User,
@@ -83,7 +83,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 // Récupération d'une publication
-exports.getOnePost = (req, res, next) => {
+exports.getOnePost = (req, res, next) => { // Les copiers/collers c'est mal
     Post.findOne({
         where: {
             id_post: req.params.id_post

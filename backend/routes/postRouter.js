@@ -11,3 +11,5 @@ router.get('/', auth, postCtrl.getAllPosts);
 router.get('/:id_post', auth, postCtrl.getOnePost);
 
 module.exports = router;
+
+// Les copiers/collers c'est mal

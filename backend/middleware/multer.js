@@ -44,3 +44,5 @@ const storageProfilePictures = multer.diskStorage({
 // On exporte multer en lui indiquant que nous gérerons uniquement les téléchargements de fichiers image
 exports.posts = multer({filesAccepted, storage: storagePosts }).single('image');
 exports.profilePicture = multer({filesAccepted, storage: storageProfilePictures }).single('image');
+
+// Les copiers/collers c'est mal
