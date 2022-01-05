@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
+
 function SignInForm() {
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onTouched'
@@ -17,9 +18,7 @@ function SignInForm() {
                 "userId": res.data.userId,
                 "token": res.data.token
             }
-            sessionStorage.setItem("storageToken", JSON.stringify(storageToken));
-            // Données à ajouter ici
-            // Et ici
+            sessionStorage.setItem('storageToken', JSON.stringify(storageToken));
         })
         .catch(err => {"Erreur dans l'authentification"});
     }

@@ -20,11 +20,9 @@ const onSubmit =  data => {
             "userId": res.data.userId,
             "token": res.data.token
         }
-        sessionStorage.setItem("storageToken", JSON.stringify(storageToken));
-        // Données à ajouter ici
-        // Et ici
+        sessionStorage.setItem('storageToken', JSON.stringify(storageToken));
     })
-    .catch(err => { 'Ceci est une erreur'});
+    .catch(err => { 'Erreur dans la soumission du formulaire d\'inscription'});
 }
 
 console.log(errors);
