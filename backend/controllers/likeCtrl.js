@@ -20,7 +20,7 @@ exports.createLike = (req, res, next) => { // Les copiers/collers c'est mal
         .then(() => res.status(201).json({ message: 'Unlike' }))
         .catch((error) => res.status(500).json({ error, message: 'Erreur unlike' })); 
     }
-}
+};
 
 exports.readLike = (req, res, next) => { // Les copiers/collers c'est mal
     postLike.findOne({
@@ -37,7 +37,7 @@ exports.readLike = (req, res, next) => { // Les copiers/collers c'est mal
         }
         res.status(200).json({like})})
     .catch((error) => res.status(500).json({ error, message: 'Erreur est-ce que c\'est liké?'}));
-}
+};
 
 exports.countLike = (req, res, next) => { // Les copiers/collers c'est mal
     postLike.count({
@@ -49,4 +49,4 @@ exports.countLike = (req, res, next) => { // Les copiers/collers c'est mal
         res.status(200).json({totalLikes});
       })
       .catch((error) => res.status(500).json({ error, message: 'Erreur dans le comptage'}));
-}
+};

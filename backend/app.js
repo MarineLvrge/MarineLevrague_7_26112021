@@ -9,7 +9,7 @@ const userRoutes = require ('./routes/userRouter');
 const auth = require ('./middleware/auth');
 const postRoutes = require ('./routes/postRouter');
 const likeRoutes = require ('./routes/likeRouter');
-//const commentRoutes = require ('./routes/commentRouter');
+const commentRoutes = require ('./routes/commentRouter');
 
 // Framework express de NodeJS
 const app = express();
@@ -36,6 +36,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use ('/api/like', likeRoutes);
-//app.use('/api/comments', commentRoutes);
+app.use('/api/comments', commentRoutes);
 
 module.exports = app;

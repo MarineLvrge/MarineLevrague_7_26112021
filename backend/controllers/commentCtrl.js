@@ -1,4 +1,5 @@
 const Comment = require ('../models/commentModel');
+const User = require ('../models/userModel');
 
 exports.createComment = (req, res, next) => {
     Comment.create({
@@ -33,5 +34,16 @@ exports.deleteComment = (req, res, next) => {
 };
 
 exports.getAllComments = (req, res, next) => {
-
-}
+    Comment.findAll({
+        where: {
+            id_post: req.params.id_post
+        },
+        include: [{
+            model: User,
+            attributes: ['lastName', 'firstName', 'profilPicture']
+        }],
+        order: [['createdAt', 'ASC']]
+    })
+    .then(comments => res.status(200).json(comments))
+    .catch(error => res.status(400).json({ error, message: 'Une erreur est survenue lors de la récupération de tous les commentaires' }));
+};
