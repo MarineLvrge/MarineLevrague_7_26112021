@@ -774,4 +774,26 @@ body {
 .connection-form .active-btn {
   background: #f05454;
 }
+
+.nav-container {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.titleNav {
+  color: black;
+  text-align: center;
+  margin-left: 4rem;
+}
+
+.logo {
+  width: auto;
+  text-align: center;
+}
 /*# sourceMappingURL=index.css.map */
