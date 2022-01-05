@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import SignInForm from './SignInForm';
 
 function SignUpForm () {
+    const [formSubmit, setFromSubmit] = useState(false);
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onTouched'
     });
@@ -11,6 +14,7 @@ const onSubmit =  data => {
     axios.post(`${process.env.REACT_APP_URL}api/auth/signup`,
     {lastName: data.lastName, firstName: data.firstName, email: data.email, password: data.password })
     .then(res => {
+        setFromSubmit(true);
         console.log(res.data);
         const storageToken = {
             "userId": res.data.userId,
@@ -26,10 +30,18 @@ const onSubmit =  data => {
 console.log(errors);
 
     return (
+        <>
+        {formSubmit ? (
+            <>
+            <SignInForm />
+            <span></span>
+            <h4 className='success'>Enregistrement réussi, veuillez vous connecter</h4>
+            </>
+        ) : (       
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='lastName'>Nom</label>
             <br />
-            <input type='text' name='lastName' id='lastName' placeholder='Doe' {...register('lastName', {required: true, minLength: 3, pattern: /^[A-Za-z]+$/i})} />
+            <input type='text' name='lastName' id='lastName' placeholder='Doe' {...register('lastName', {required: true, minLength: 3, pattern: (/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)})} />
             
             <div className='error'>{errors.lastName?.type === 'required' && "Vous devez entrer un nom"}</div>
             <div className='error'>{errors.lastName?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
@@ -38,7 +50,7 @@ console.log(errors);
 
             <label htmlFor='firstName'>Prénom</label>
             <br />
-            <input type='text' name='firstName' id='firstName' placeholder='John' {...register('firstName', {required: true, minLength: 3, pattern: /^[A-Za-z]+$/i})}/>
+            <input type='text' name='firstName' id='firstName' placeholder='John' {...register('firstName', {required: true, minLength: 3, pattern: (/^[a-zA-Z\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)})}/>
             <div className='error'>{errors.firstName?.type === 'required' && "Vous devez entrer un prénom"}</div>
             <div className='error'>{errors.firstName?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
             <div className='error'>{errors.firstName?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
@@ -60,7 +72,9 @@ console.log(errors);
 
             <button type='submit' disabled={isSubmitting}>Valider inscription</button>
         </form>
-)}
+        )}
+        </>
+)};
 
 
 export default SignUpForm;
