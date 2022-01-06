@@ -29,7 +29,7 @@ console.log(errors);
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='text' name='email' id='email' placeholder='johndoe@gmail.com'{...register('email', {required: true, pattern: /^[\w_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/g})} />
+            <input type='text' name='email' id='email' placeholder='johndoe@groupomania.com'{...register('email', {required: true, pattern: /^[a-z0-9](\.?[a-z0-9]){1,6}@groupomania\.com$/})} />
             <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
             <div className='error'>{errors.email?.type === 'pattern' && "Votre adresse mail ou votre mot de passe est invalide"}</div>
             <br />
