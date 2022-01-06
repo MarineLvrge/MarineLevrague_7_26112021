@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import SignInForm from './SignInForm';
 
 function SignUpForm () {
-    const [formSubmit, setFromSubmit] = useState(false);
+    const [formSubmit, setFormSubmit] = useState(false);
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onTouched'
     });
@@ -14,7 +14,7 @@ const onSubmit =  data => {
     axios.post(`${process.env.REACT_APP_URL}api/auth/signup`,
     {lastName: data.lastName, firstName: data.firstName, email: data.email, password: data.password })
     .then(res => {
-        setFromSubmit(true);
+        setFormSubmit(true);
         console.log(res.data);
         const storageToken = {
             "userId": res.data.userId,
@@ -33,7 +33,7 @@ console.log(errors);
             <>
             <SignInForm />
             <span></span>
-            <h4 className='success'>Enregistrement réussi, veuillez vous connecter</h4>
+            <h4 className='success'>Inscription réussie, veuillez vous connecter</h4>
             </>
         ) : (       
         <form onSubmit={handleSubmit(onSubmit)}>

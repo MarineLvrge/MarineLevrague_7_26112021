@@ -3,15 +3,18 @@
     display: flex;
     margin: 1rem;
     justify-content: space-between;
+    align-items: center;
 }
 .titleNav {
     color: white;
     font-size: xx-large;
 }
-.logo {
+.logoNav {
     width: auto;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
-
+.logout {
+    width: 2rem;
+}
