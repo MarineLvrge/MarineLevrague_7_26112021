@@ -5,12 +5,13 @@
     justify-content: space-between;
 }
 .titleNav {
-    color: black;
-    text-align: center;
-    margin-left: 4rem;
+    color: white;
+    font-size: xx-large;
 }
 .logo {
     width: auto;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 

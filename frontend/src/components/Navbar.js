@@ -8,12 +8,12 @@ const Navbar = () => {
                 <div className='logo'>
                     <NavLink exact to='/' aria-label="retour à l'accueil">
                         <div className='logo'>
-                            <img src='./images/black-logo.svg' className='logoGrp' alt='Logo de Groupomania' />
-                            <h1 className='titleNav'>Votre réseau social d'entreprise</h1>
+                            <img src='./images/icon-white.png' className='logoGrp' alt='Logo de Groupomania' />
+                            <h1 className='titleNav'>Groupomania</h1>
                         </div>
-
                     </NavLink>
                 </div>
+                
             </div>
         </nav>
     );
