@@ -13,12 +13,12 @@ function SignInForm() {
         {email: data.email, password: data.password })
         .then(res => {
             console.log(res.data);
-            window.location = '/feed';
             const storageToken = {
                 "userId": res.data.userId,
                 "token": res.data.token
             }
             sessionStorage.setItem('storageToken', JSON.stringify(storageToken));
+            window.location = '/';
         })
         .catch(err => {"Erreur dans l'authentification"});
     }

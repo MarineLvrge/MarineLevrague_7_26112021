@@ -2,7 +2,7 @@ import React from 'react';
 import Log from '../components/Log';
 
 
-const Home = () => {
+const Connect = () => {
 
     return (
         <div className="home-page">
@@ -13,4 +13,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Connect;

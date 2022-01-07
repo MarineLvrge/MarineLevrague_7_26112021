@@ -1,12 +1,11 @@
 const express = require ('express');
 const sequelize = require ('./config/sequelize');
 const path = require ('path');
-const cors = require('cors');
+//const cors = require('cors');
 
 
 // Routes
 const userRoutes = require ('./routes/userRouter');
-const auth = require ('./middleware/auth');
 const postRoutes = require ('./routes/postRouter');
 const likeRoutes = require ('./routes/likeRouter');
 const commentRoutes = require ('./routes/commentRouter');
@@ -15,8 +14,8 @@ const commentRoutes = require ('./routes/commentRouter');
 const app = express();
 
 // Autorisation des CORS (Cross Origin Resource Sharing) permet à toutes les demandes de toutes les origines d'accéder à l'API
-const corsOptions = {
-    origin: 'http://localhost:3001',
+/*const corsOptions = {
+    origin: '*',
     credentials: true,
     optionSuccessStatus: '200',
     allowedHeaders: ["sessionId", "Content-Type"],
@@ -25,7 +24,14 @@ const corsOptions = {
     preflightContinue: false,
   };
 
-  app.use(cors(corsOptions));
+  app.use(cors(corsOptions));*/
+
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+  });
 
 app.use(express.json());
 

@@ -22,7 +22,7 @@ const Navbar = () => {
                     <ul>
                         <li></li>
                         <li onClick={logout}>
-                            <NavLink exact to='/'>
+                            <NavLink exact to='/connect'>
                                 <img className='logout' src='./images/logout.svg' alt='logout'></img>
                             </NavLink>
                         </li>
