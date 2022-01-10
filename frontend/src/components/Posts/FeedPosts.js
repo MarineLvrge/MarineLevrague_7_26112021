@@ -1,14 +1,12 @@
-//import React from "react";
+import React from "react";
 import axios from "axios";
 
-
-
-
 const FeedPosts = () => {
+
     let session = false;
 
     if(!sessionStorage.storageToken){
-        window.location = '/feed';
+        window.location = '/connect';
     } else session = true;
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
@@ -24,13 +22,18 @@ const FeedPosts = () => {
     })
     .catch(err => {'Erreur dans la récupération des posts'});
 
-    if(session) {
+
+
+    if(!session) {
+        window.location = '/connect';
+    } else {
         return(
-            <div>
-                Bonjour
+            <div className="post-container">
+                <h1>Votre fil d'actualité</h1>
             </div>
-        );
-    };
+        )
+    }
 
 };
+
 export default FeedPosts;
