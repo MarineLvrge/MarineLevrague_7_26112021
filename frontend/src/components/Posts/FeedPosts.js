@@ -110,17 +110,21 @@ import axios from "axios";
         <div>Vous n'êtes pas connecté</div>
     } else {
         return(
-            <div className="post-container">
-                <h1>Votre fil d'actualité</h1>
+            <div className="blocPost">
+                Inserer le bloc pour poster une publication
                 {posts.map((item) => (
-                    <div className="postContent" key={item.id_user}>
-                        <div className="postAuthor">{item.id_user ? item.id_user.firstName : 'deleted user'}
+                    <div className="postContainer" key={item.id_post}>
+                        <div className="postAuthor">
+                            <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
+                            <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
                         </div>
                         <div className="postText">
-                            <span>{item.title}</span>
-                            <span>{item.content}</span>
-                            <span>{item.attachment}</span>
+                            <h1 className="postTitle">{item.title}</h1>
+                            <p className="postContent">{item.content}</p>
+                            <img className="imgPost" src={item.attachment} alt="Illustration"/>
                         </div>
+                        Ici les réactions de la publication
+                        Et à côté les commentaires
                     </div>
                 ))}
             </div>
