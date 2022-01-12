@@ -245,13 +245,18 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 0.4rem solid #f05454;
-  border-style: double;
+  border: 0.3rem solid #e8e8e8;
 }
 
 .titleNav {
-  color: white;
-  font-size: xx-large;
+  color: #ff7b77;
+  font-size: 3.3rem;
+}
+
+@media screen and (max-width: 450px) {
+  .titleNav {
+    font-size: 2rem;
+  }
 }
 
 .logoNav {
@@ -268,6 +273,13 @@ body {
 
 .logout {
   width: 2rem;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+  .logout {
+    margin: auto;
+  }
 }
 
 .blocPost {
