@@ -110,6 +110,7 @@ import axios from "axios";
         <div>Vous n'êtes pas connecté</div>
     } else {
         return(
+                <main>
             <div className="blocPost">
                 Inserer le bloc pour poster une publication
                 {posts.map((item) => (
@@ -128,6 +129,7 @@ import axios from "axios";
                     </div>
                 ))}
             </div>
+            </main> 
         )
     }
 };
