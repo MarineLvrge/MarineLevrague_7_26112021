@@ -3,13 +3,16 @@
     height: 8rem;
     display: flex;
     align-items: center;
-    border: .3rem solid $colorWhite;
-    //border-style: double;
+    border-bottom: .3rem solid $colorWhite;
+    background-color: $colorDarkBlue;
+    @media only screen and (max-width: 450px) {
+        width: 100%;
+    }
 }
 .titleNav {
     color: $color-1;
     font-size: 3.3rem;
-    @media screen and (max-width: 450px) {
+    @media only screen and (max-width: 450px) {
         font-size: 2rem;
     }
 }
@@ -19,11 +22,17 @@
     align-items: center;
     gap: 1rem;
     margin: auto;
+    &:hover {
+        transform: scale(1.02);
+        transition: 0.15s;
+    }
 }
 .logout {
-    width: 2rem;
+    font-size: 3rem;
     margin-right: 1rem;
-    @media screen and (max-width: 450px) {
+    color: white;
+    @media only screen and (max-width: 450px) {
         margin: auto;
+        font-size: 2rem;
     }
 }

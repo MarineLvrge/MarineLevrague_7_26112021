@@ -2,17 +2,17 @@ import React from 'react';
 
 const Footer = () => {
     return (
-    <div class="footer-basic">
+    <div className="footer-basic">
         <footer>
-            <div class="social"><i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-twitter"></i><i class="fab fa-snapchat"></i></div>
-            <ul class="list-inline">
+            <div className="social"><i className="fab fa-instagram"></i><i className="fab fa-facebook"></i><i className="fab fa-twitter"></i><i className="fab fa-snapchat"></i></div>
+            <ul className="list-inline">
                 
-                <li class="list-inline-item">Services</li>
-                <li class="list-inline-item">À propos</li>
-                <li class="list-inline-item">Mentions légales</li>
-                <li class="list-inline-item">Politique de confidentialité</li>
+                <li className="list-inline-item">Services</li>
+                <li className="list-inline-item">À propos</li>
+                <li className="list-inline-item">Mentions légales</li>
+                <li className="list-inline-item">Politique de confidentialité</li>
             </ul>
-            <p class="copyright">Groupomania © 2022</p>
+            <p className="copyright">Groupomania © 2022</p>
         </footer>
     </div>
     );

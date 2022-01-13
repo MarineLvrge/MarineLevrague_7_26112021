@@ -12,15 +12,21 @@ const App = () => {
   return (
     <BrowserRouter>
       <Router>
-        <Navbar />
+        <header>
+          <Navbar />
+        </header>
           <Switch>
-            <Route path='/' exact component={feed} />
-            <Route path='/connect' exact component={connect} />
-            <Route path='/profile' exact component={profile} />
-            <Redirect to='/connect' />
+              <section className='bigSection'>
+                <Route path='/' exact component={feed} />
+                <Route path='/connect' exact component={connect} />
+                <Route path='/profile' exact component={profile} />
+                <Redirect to='/connect' />
+              </section>
           </Switch>
-          <br/>
-        <Footer />
+            <br/>
+          <footer>
+            <Footer />
+          </footer>
       </Router>
     </BrowserRouter>
   );
