@@ -7,11 +7,12 @@
     gap: 2rem;
 
 .postContainer {
-    width: 50%;
+    width: 40%;
     border: 0rem solid $colorBlue;
     border-radius: 18px;
-    box-shadow: 0px 0px 5px 5px $colorPink;
+    box-shadow: 0px 0px 5px 5px $color-2;
     margin: auto;
+    background-color: $colorDarkBlue;
     @media screen and (max-width: 900px) {
         width: 95%;
     }

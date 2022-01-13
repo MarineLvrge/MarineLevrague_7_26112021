@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CreatePost from "./CreatePost";
-import dateFormat from 'dateformat';
 
     const FeedPosts = () => {
 
@@ -39,8 +38,15 @@ import dateFormat from 'dateformat';
     
     console.log(posts);
 
-    const now = new Date();
-    dateFormat(now)
+    function formatedDate(createdAt, updatedAt) {
+        const dateISO = new Date(updatedAt);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', second:'numeric' };
+        let date = dateISO.toLocaleDateString('fr-FR', options);
+    
+        if(createdAt === updatedAt){
+            return `Publié le ${date}`;
+        }else return `Modifié le ${date}`;
+    }
 
     if(!session){
         <div>Vous n'êtes pas connecté</div>
@@ -54,7 +60,7 @@ import dateFormat from 'dateformat';
                             <div className="postAuthor">
                                 <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
                                 <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
-                                <span className="datePost">{dateFormat(item.createdAt)}</span>
+                                <span className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</span>
                             </div>
                             <div className="postText">
                                 <h1 className="postTitle">{item.title}</h1>

@@ -326,12 +326,13 @@ body {
 }
 
 .blocPost .postContainer {
-  width: 50%;
+  width: 40%;
   border: 0rem solid #30475e;
   border-radius: 18px;
-  -webkit-box-shadow: 0px 0px 5px 5px #f05454;
-          box-shadow: 0px 0px 5px 5px #f05454;
+  -webkit-box-shadow: 0px 0px 5px 5px #ffd0c4;
+          box-shadow: 0px 0px 5px 5px #ffd0c4;
   margin: auto;
+  background-color: #222831;
 }
 
 @media screen and (max-width: 900px) {

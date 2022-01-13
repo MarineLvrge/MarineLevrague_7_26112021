@@ -15,14 +15,14 @@ const App = () => {
         <header>
           <Navbar />
         </header>
-          <Switch>
-              <section className='bigSection'>
+          <section className='bigSection'>
+            <Switch>
                 <Route path='/' exact component={feed} />
                 <Route path='/connect' exact component={connect} />
                 <Route path='/profile' exact component={profile} />
                 <Redirect to='/connect' />
-              </section>
-          </Switch>
+            </Switch>
+          </section>
             <br/>
           <footer>
             <Footer />
