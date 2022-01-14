@@ -1,11 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 
 const Navbar = () => {
 
+    const alert = useAlert();
+
     const logout = () => {
         sessionStorage.clear();
+        alert.show('Vous avez bien été déconnecté, à bientôt!')
     }
     return (
         <nav>

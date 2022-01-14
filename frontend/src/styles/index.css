@@ -89,6 +89,10 @@ body {
   min-height: 30vw;
 }
 
+label {
+  margin-bottom: 10px;
+}
+
 .home {
   display: -ms-grid;
   display: grid;
