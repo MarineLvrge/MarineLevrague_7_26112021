@@ -17,7 +17,7 @@ a:visited {
 input,
 textarea {
   resize: none;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 270px;
   height: 40px;
   font-family: "Roboto", sans-serif;
@@ -329,10 +329,11 @@ body {
   width: 40%;
   border: 0rem solid #30475e;
   border-radius: 18px;
-  -webkit-box-shadow: 0px 0px 5px 5px #ffd0c4;
-          box-shadow: 0px 0px 5px 5px #ffd0c4;
+  -webkit-box-shadow: 0px 0px 10px black;
+          box-shadow: 0px 0px 10px black;
   margin: auto;
   background-color: #222831;
+  padding: 10px;
 }
 
 @media screen and (max-width: 900px) {
@@ -474,5 +475,67 @@ body {
   text-align: center;
   font-size: 1rem;
   color: #ff7b77;
+}
+
+.formPostContainer {
+  width: 100%;
+  margin-bottom: 100px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 900px) {
+  .formPostContainer {
+    margin: auto;
+    margin-bottom: 100px;
+    margin-top: 30px;
+  }
+}
+
+.formPostContainer .formPost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 40%;
+  margin: auto;
+  border-radius: 18px;
+  -webkit-box-shadow: 0px 0px 10px black;
+          box-shadow: 0px 0px 10px black;
+  background-color: #222831;
+  color: white;
+  padding: 30px;
+}
+
+@media screen and (max-width: 900px) {
+  .formPostContainer .formPost {
+    width: 95%;
+  }
+}
+
+.formPostContainer .createPost {
+  color: #ffd0c4;
+  border: 1px solid white;
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.formPostContainer #formTitle {
+  width: 100%;
+}
+
+.formPostContainer #formContent {
+  height: 100px;
+  width: 100%;
+}
+
+.formPostContainer #uploadImage {
+  width: 115px;
+  height: 21px;
 }
 /*# sourceMappingURL=index.css.map */
