@@ -10,6 +10,8 @@
     padding: 20px 0;
     user-select: none;
     text-align: center;
+    background-color: $colorDarkBlue;
+    color: white;
     @media only screen and (max-width: 450px) {
       width: 100%;
     }
