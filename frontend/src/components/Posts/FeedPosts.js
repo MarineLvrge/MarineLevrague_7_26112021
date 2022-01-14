@@ -22,7 +22,7 @@ import CreatePost from "./CreatePost";
             let res;
             try {
                 res = await axios.get(`${process.env.REACT_APP_URL}api/posts`, {
-                    headers: {'Authorization' : `Bearer ${token}`,
+                    headers: {Authorization : `Bearer ${token}`,
                 },
             });
             } catch(error) {
