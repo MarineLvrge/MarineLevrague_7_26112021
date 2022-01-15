@@ -24,21 +24,14 @@ const App = () => {
     <AlertProvider template={AlertTemplate} {...alertOptions}>
       <BrowserRouter>
         <Router>
-          <header>
-            <Navbar />
-          </header>
-            <section className='bigSection'>
+          <Navbar />
               <Switch>
                 <Route path='/' exact component={feed} />
                 <Route path='/connect' exact component={connect} />
                 <Route path='/profile' exact component={profile} />
                 <Redirect to='/connect' />
               </Switch>
-            </section>
-              <br/>
-            <footer>
-              <Footer />
-            </footer>
+            <Footer />
         </Router>
       </BrowserRouter>
     </AlertProvider>

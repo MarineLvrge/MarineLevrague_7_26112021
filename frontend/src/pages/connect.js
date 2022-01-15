@@ -5,11 +5,13 @@ import Log from '../components/Log';
 const Connect = () => {
 
     return (
-        <div className="home-page">
+        <section className='bigSection'>
+            <div className="home-page">
                 <div className="log-container">
                     <Log signIn={false} signUp={true} />
                 </div> 
-        </div>
+            </div>
+        </section>
     );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CreatePost from "./CreatePost";
+import GetComments from "./Comments";
 
     const FeedPosts = () => {
 
@@ -56,7 +57,7 @@ import CreatePost from "./CreatePost";
                 <CreatePost />
                 <section className="blocPost">
                     {posts.map((item) => (
-                        <div className="postContainer" key={item.id_post}>
+                        <div className="postContainer" key={item.id}>
                             <div className="postAuthor">
                                 <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
                                 <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
@@ -68,7 +69,7 @@ import CreatePost from "./CreatePost";
                                 <img className="imgPost" src={item.attachment} alt="Illustration"/>
                             </div>
                             Ici les réactions de la publication
-                            Et à côté les commentaires
+                            <GetComments />
                         </div>
                     ))}
                 </section>

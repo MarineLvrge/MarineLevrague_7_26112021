@@ -12,6 +12,7 @@ const Navbar = () => {
         alert.show('Vous avez bien été déconnecté, à bientôt!')
     }
     return (
+    <header>
         <nav>
             <div className='nav-container'>
                 <div className='logoNav'>
@@ -33,6 +34,7 @@ const Navbar = () => {
                     </ul>
             </div>
         </nav>
+    </header>
     );
 };
 

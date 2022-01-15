@@ -2,9 +2,11 @@ import React from 'react';
 
 const profil = () => {
     return (
-        <div>
-            Hello depuis profil
-        </div>
+        <section className='bigSection'>
+            <div>
+                Hello depuis profil
+            </div>
+        </section>
     );
 };
 
