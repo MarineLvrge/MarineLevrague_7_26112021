@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CreatePost from "./CreatePost";
-import GetComments from "./Comments";
+import Comments from "./Comments";
+import { useAlert } from 'react-alert';
 
     const FeedPosts = () => {
+
+        const alert = useAlert();
 
         let session = false;
 
@@ -39,6 +42,23 @@ import GetComments from "./Comments";
     
     console.log(posts);
 
+    // Fonction pour supprimer un post
+    function deletePost(id_post) {
+
+            axios.delete(`${process.env.REACT_APP_URL}api/posts/${id_post}`,
+                {
+                    headers: { 'Authorization' : `Bearer ${token}`,
+                    },
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+    }
+
     function formatedDate(createdAt, updatedAt) {
         const dateISO = new Date(updatedAt);
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', second:'numeric' };
@@ -57,11 +77,16 @@ import GetComments from "./Comments";
                 <CreatePost />
                 <section className="blocPost">
                     {posts.map((item) => (
-                        <div className="postContainer" key={item.id}>
+                        <div className="postContainer" key={item.id_post}>
+                            <div>{item.id_post}</div>
                             <div className="postAuthor">
                                 <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
                                 <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
-                                <span className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</span>
+                                <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
+                            </div>
+                            <div className="editPost">
+                                <button className="editBtn"><i className="fas fa-edit"></i></button>
+                                <button onClick={() => {if(item.User.id_user === userId) {deletePost(item.id_post)} else {(alert.show('Vous ne pouvez pas supprimer une publication qui ne vous appartient pas'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                             </div>
                             <div className="postText">
                                 <h1 className="postTitle">{item.title}</h1>
@@ -69,7 +94,7 @@ import GetComments from "./Comments";
                                 <img className="imgPost" src={item.attachment} alt="Illustration"/>
                             </div>
                             Ici les réactions de la publication
-                            <GetComments />
+                            <Comments id_post={item.id_post} />
                         </div>
                     ))}
                 </section>
