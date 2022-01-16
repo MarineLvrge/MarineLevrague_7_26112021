@@ -36,6 +36,7 @@ const CreatePost = () => {
             })
         .then((res) => {
             console.log(res.data);
+            alert.show('Votre publication a bien été créée!');
             window.location.reload();
         })
         .catch((error) => console.log(error));

@@ -3,6 +3,7 @@ import axios from "axios";
 import CreatePost from "./CreatePost";
 import Comments from "./Comments";
 import { useAlert } from 'react-alert';
+import EditPost from "./EditPost";
 
     const FeedPosts = () => {
 
@@ -52,6 +53,7 @@ import { useAlert } from 'react-alert';
                 })
                 .then((res) => {
                     console.log(res.data);
+                    alert.show('Votre publication a bien été supprimée!');
                     window.location.reload();
                 })
                 .catch((error) => {
@@ -84,8 +86,8 @@ import { useAlert } from 'react-alert';
                                 <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
                             </div>
                             <div className="editPost">
-                                <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                <button onClick={() => {if(item.User.id_user === userId) {deletePost(item.id_post)} else {(alert.show('Vous ne pouvez pas supprimer une publication qui ne vous appartient pas'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
+                                <button onClick={() => {EditPost(item.id_post)}} className="editBtn"><i className="fas fa-edit"></i></button>
+                                <button onClick={() => {if(item.User.id_user === userId) {deletePost(item.id_post)} else {(alert.show('Vous ne pouvez pas supprimer une publication qui ne vous appartient pas!'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                             </div>
                             <div className="postText">
                                 <h1 className="postTitle">{item.title}</h1>

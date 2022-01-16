@@ -60,6 +60,7 @@ const GetComments = ({id_post}) => {
         .then((res) => {
             console.log(res.data);
             setComment(res.data);
+            alert.show('Votre commentaire a bien été ajouté!')
             fetchComments();
             setComment('');
         })
@@ -74,7 +75,8 @@ const GetComments = ({id_post}) => {
         },
         })
         .then((res) => {
-            console.log(res.data);   
+            console.log(res.data);
+            alert.show('Votre commentaire a bien été supprimé!')
             fetchComments();       
         })
         .catch((error) => console.log(error));
@@ -93,7 +95,7 @@ const GetComments = ({id_post}) => {
 
                 <div className='editComment'>
                     <button className="editBtn"><i className="fas fa-edit"></i></button>
-                    <button onClick={() => {if(item.id_user === userId) {deleteComment(item.id_comment)} else {(alert.show('Vous ne pouvez pas supprimer un commentaire qui ne vous appartient pas'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => {if(item.id_user === userId) {deleteComment(item.id_comment)} else {(alert.show('Vous ne pouvez pas supprimer un commentaire qui ne vous appartient pas!'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                 </div>
 
                 </div>
