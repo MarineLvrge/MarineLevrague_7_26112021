@@ -78,7 +78,6 @@ import { useAlert } from 'react-alert';
                 <section className="blocPost">
                     {posts.map((item) => (
                         <div className="postContainer" key={item.id_post}>
-                            <div>{item.id_post}</div>
                             <div className="postAuthor">
                                 <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
                                 <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
