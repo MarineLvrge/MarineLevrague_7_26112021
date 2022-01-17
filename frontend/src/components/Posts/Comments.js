@@ -8,6 +8,7 @@ const GetComments = ({id_post}) => {
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
+    const isAdmin = JSON.parse (sessionStorage.storageToken).isAdmin;
     console.log(userId);
     console.log(token);
 
@@ -60,7 +61,7 @@ const GetComments = ({id_post}) => {
         .then((res) => {
             console.log(res.data);
             setComment(res.data);
-            alert.show('Votre commentaire a bien été ajouté!')
+            alert.show('Votre commentaire a bien été publié!')
             fetchComments();
             setComment('');
         })
@@ -94,9 +95,8 @@ const GetComments = ({id_post}) => {
                     <p className='commentText'>{item.comment}</p>
                     <p className="commentDate">{formatedDate(item.createdAt, item.updatedAt)}</p>
 
-                    {item.id_user === userId ? (
+                    {item.id_user === userId || isAdmin ? (
                     <div className='editComment'>
-                        <button className="editBtn"><i className="fas fa-edit"></i></button>
                         <button onClick={() => {deleteComment(item.id_comment)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>   
                     </div>
                     ) : null}

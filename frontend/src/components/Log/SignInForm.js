@@ -15,7 +15,8 @@ function SignInForm() {
             console.log(res.data);
             const storageToken = {
                 "userId": res.data.userId,
-                "token": res.data.token
+                "token": res.data.token,
+                "isAdmin": res.data.isAdmin
             }
             sessionStorage.setItem('storageToken', JSON.stringify(storageToken));
             window.location = '/';
@@ -29,7 +30,7 @@ console.log(errors);
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='text' name='email' id='email' placeholder='johndoe@groupomania.com'{...register('email', {required: true, pattern: /^[a-z0-9](\.?[a-z0-9]){1,6}@groupomania\.com$/})} />
+            <input type='text' name='email' id='email' placeholder='johndoe@groupomania.com'{...register('email', {required: true, pattern: /^[a-z0-9](\.?[a-z0-9]){1,15}@groupomania\.com$/})} />
             <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
             <div className='error'>{errors.email?.type === 'pattern' && "Votre adresse mail ou votre mot de passe est invalide"}</div>
             <br />

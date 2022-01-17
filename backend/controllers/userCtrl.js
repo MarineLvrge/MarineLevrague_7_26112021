@@ -43,8 +43,9 @@ exports.login = (req, res, next) => { // Les copiers/collers c'est mal
                     }
                     res.status(200).json({ 
                         userId: user.id_user,
+                        isAdmin: user.isAdmin,
                         token: jwt.sign(
-                            { userId: user.id_user, isAdmin: user.isAdmin },
+                            { userId: user.id_user },
                             `${process.env.SECRET_TOKEN}`,
                             { expiresIn: '24h' }
                         )

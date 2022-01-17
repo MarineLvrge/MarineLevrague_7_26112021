@@ -56,7 +56,7 @@ console.log(errors);
 
             <label htmlFor='email'>Email</label>
             <br />
-            <input type='email' name='email' id='email' placeholder='johndoe@groupomania.com' {...register('email', {required: true, pattern: /^[a-z0-9](\.?[a-z0-9]){1,6}@groupomania\.com$/})}/>
+            <input type='email' name='email' id='email' placeholder='johndoe@groupomania.com' {...register('email', {required: true, pattern: /^[a-z0-9](\.?[a-z0-9]){1,15}@groupomania\.com$/})}/>
             <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
             <div className='error'>{errors.email?.type === 'pattern' && "Veuillez entrer une adresse mail valide"}</div>
             <br />

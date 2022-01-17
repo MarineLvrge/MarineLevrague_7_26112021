@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import CreatePost from "./CreatePost";
 import Comments from "./Comments";
 import { useAlert } from 'react-alert';
-import EditPost from "./EditPost";
 
     const FeedPosts = () => {
 
         const alert = useAlert();
+
+        useEffect(() => {
+            if(!session) {
+                window.location ='/connect' 
+            }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [])
 
         let session = false;
 
@@ -17,6 +24,7 @@ import EditPost from "./EditPost";
     
         const userId = JSON.parse (sessionStorage.storageToken).userId;
         const token = JSON.parse (sessionStorage.storageToken).token;
+        const isAdmin = JSON.parse(sessionStorage.storageToken).isAdmin;
         console.log(userId);
         console.log(token);
 
@@ -61,9 +69,7 @@ import EditPost from "./EditPost";
                 })
     }
 
-    // Fonction pour afficher ou non les boutons de modification
-
-
+    // Fonction qui formate la date et l'heure
     function formatedDate(createdAt, updatedAt) {
         const dateISO = new Date(updatedAt);
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', second:'numeric' };
@@ -74,9 +80,6 @@ import EditPost from "./EditPost";
         }else return `Modifié le ${date}`;
     }
 
-    if(!session){
-        <div>Vous n'êtes pas connecté</div>
-    } else {
         return(
             <main>
                 <CreatePost />
@@ -89,9 +92,11 @@ import EditPost from "./EditPost";
                                 <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
                             </div>
 
-                            {item.User.id_user === userId ? (
+                            {item.User.id_user === userId  || isAdmin ? (
                             <div className="editPost">
-                                <button onClick={<EditPost id_post={item.id_post} />} className="editBtn"><i className="fas fa-edit"></i></button>
+                                {item.User.id_user === userId  ? (
+                                <button className="editBtn"><Link to={{pathname:'/updatePage', data: {id_post : item.id_post}}}><i className="fas fa-edit"></i></Link></button>
+                                ) : null}
                                 <button onClick={() => {deletePost(item.id_post)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                             </div>
                             ) : null}
@@ -109,7 +114,7 @@ import EditPost from "./EditPost";
                 </section>
             </main> 
         )
-    }
-};
+    };
+
 
 export default FeedPosts;
