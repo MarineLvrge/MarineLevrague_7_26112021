@@ -46,7 +46,7 @@ exports.countLike = (req, res, next) => { // Les copiers/collers c'est mal
         }
       })
       .then(totalLikes => {
-        res.status(200).json({totalLikes});
+        res.status(200).json([totalLikes]);
       })
       .catch((error) => res.status(500).json({ error, message: 'Erreur dans le comptage'}));
 };

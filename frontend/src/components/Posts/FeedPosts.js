@@ -4,6 +4,7 @@ import axios from "axios";
 import CreatePost from "./CreatePost";
 import Comments from "./Comments";
 import { useAlert } from 'react-alert';
+import LikePost from "./LikePost";
 
     const FeedPosts = () => {
 
@@ -107,7 +108,7 @@ import { useAlert } from 'react-alert';
                                 <p className="postContent">{item.content}</p>
                                 <img className="imgPost" src={item.attachment} alt="Illustration"/>
                             </div>
-                            Ici les réactions de la publication
+                            <LikePost id_post={item.id_post} />
                             <Comments id_post={item.id_post} />
                         </div>
                     ))}
