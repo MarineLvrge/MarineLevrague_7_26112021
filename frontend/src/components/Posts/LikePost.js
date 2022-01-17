@@ -7,7 +7,7 @@ const LikePost = ({id_post}) => {
     const token = JSON.parse (sessionStorage.storageToken).token;
 
     const [likes, setLikes] = useState({});
-    const [addLike, setAddLike] = useState(null);
+    const [addLike, setAddLike] = useState(0);
 
     console.log(id_post);
 
@@ -34,7 +34,11 @@ const LikePost = ({id_post}) => {
 
     // Fonction qui poste un like
     const postLike = () => {
-        axios.post(`${process.env.REACT_APP_URL}api/like/${id_post}`, userId, {
+        const data = {
+            id_user : userId,
+            like : 1,
+        };
+        axios.post(`${process.env.REACT_APP_URL}api/like/${id_post}`, data, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -44,6 +48,7 @@ const LikePost = ({id_post}) => {
         .then((res) => {
             console.log(res.data);
             //setAddLike(res.data)
+            setAddLike(res.data);
         })
         .catch((error) => {
             console.log(error);
@@ -52,7 +57,9 @@ const LikePost = ({id_post}) => {
 
     return (
         <section className='likesContainer'>
-            <button onClick={postLike()}></button>
+            
+           
+            <button onClick={(e) => {postLike()}}><i className="far fa-thumbs-up"></i></button>
             
         </section>
     );
