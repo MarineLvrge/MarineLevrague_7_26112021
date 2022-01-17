@@ -84,11 +84,11 @@ const EditPost = ({id_post}) => {
                 <br />
 
                     <label htmlFor='formTitle'>Titre</label>
-                    <input type='text' name='formTitle' id='formTitle' placeholder='Titre de la publication' onChange={handleChangeTitle} value={editTitle} required />
+                    <input type='text' name='formTitle' id='formTitle' placeholder={editTitle} onChange={handleChangeTitle}  required />
                     <br />
 
                     <label htmlFor='formContent'>Texte</label>
-                    <input type='text' name='formContent' id='formContent' placeholder='Quoi de neuf ?' onChange={handleChangeContent} value={editContent} required />
+                    <input type='text' name='formContent' id='formContent' placeholder={editContent} onChange={handleChangeContent}  required />
                     <br />
             
                     <label htmlFor='image' className='formImage'>Image</label>
