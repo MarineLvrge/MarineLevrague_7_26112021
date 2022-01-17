@@ -61,6 +61,9 @@ import EditPost from "./EditPost";
                 })
     }
 
+    // Fonction pour afficher ou non les boutons de modification
+
+
     function formatedDate(createdAt, updatedAt) {
         const dateISO = new Date(updatedAt);
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', second:'numeric' };
@@ -85,10 +88,15 @@ import EditPost from "./EditPost";
                                 <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
                                 <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
                             </div>
+
+                            {item.User.id_user === userId ? (
                             <div className="editPost">
-                                <button onClick={() => {EditPost(item.id_post)}} className="editBtn"><i className="fas fa-edit"></i></button>
-                                <button onClick={() => {if(item.User.id_user === userId) {deletePost(item.id_post)} else {(alert.show('Vous ne pouvez pas supprimer une publication qui ne vous appartient pas!'))}}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
+                                <button onClick={<EditPost id_post={item.id_post} />} className="editBtn"><i className="fas fa-edit"></i></button>
+                                <button onClick={() => {deletePost(item.id_post)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                             </div>
+                            ) : null}
+                            
+
                             <div className="postText">
                                 <h1 className="postTitle">{item.title}</h1>
                                 <p className="postContent">{item.content}</p>

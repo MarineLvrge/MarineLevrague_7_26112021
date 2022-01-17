@@ -2,7 +2,26 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useAlert } from 'react-alert';
 
+
 const EditPost = ({id_post}) => {
+
+    const getOnePost = () => {
+        axios.get(`${process.env.REACT_APP_URL}api/posts/${id_post}`, {
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+            setEditTitle(res.data);
+            setEditContent(res.data);
+            setEditImage(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+    
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
@@ -28,6 +47,7 @@ const EditPost = ({id_post}) => {
         console.log(editImage);
         console.log(userId);
 
+
         axios.put(`${process.env.REACT_APP_URL}api/posts/${id_post}`, data, {
             headers: {
                 'Accept' : 'application/json',
@@ -45,6 +65,7 @@ const EditPost = ({id_post}) => {
         <div className='editPostContainer'>
             <form className='editPost' onSubmit={(e) => {
                 e.preventDefault();
+                getOnePost();
                 editPost();
                 if(editTitle === '' || editTitle === null || editContent === '' || editContent === null || editImage === null) {
                 alert.show('Vous devez remplir chaque champ avant de poster votre publication!')
