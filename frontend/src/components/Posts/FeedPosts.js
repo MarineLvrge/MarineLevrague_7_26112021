@@ -10,18 +10,18 @@ import LikePost from "./LikePost";
 
         const alert = useAlert();
 
+        let session = false;
+
+        if(!sessionStorage.storageToken){
+        window.location = '/connect';
+        } else session = true;
+
         useEffect(() => {
             if(!session) {
                 window.location ='/connect' 
             }
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
-
-        let session = false;
-
-        if(!sessionStorage.storageToken){
-        window.location = '/connect';
-        } else session = true;
     
         const userId = JSON.parse (sessionStorage.storageToken).userId;
         const token = JSON.parse (sessionStorage.storageToken).token;
@@ -83,39 +83,39 @@ import LikePost from "./LikePost";
 
         return(
             <main>
-                <CreatePost />
-                <section className="blocPost">
-                    {posts.map((item) => (
-                        <div className="postContainer" key={item.id_post}>
-                            <div className="postAuthor">
-                                <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
-                                <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
-                                <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
-                            </div>
+               <button className="goProfile"><Link to={{pathname:'/profile'}}>Voir mon profil <i class="fas fa-arrow-right"></i></Link></button>
+                    <CreatePost />
+                        <section className="blocPost">
+                            {posts.map((item) => (
+                                <div className="postContainer" key={item.id_post}>
+                                    <div className="postAuthor">
+                                    <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
+                                    <p className="postUserName">{item.User.firstName} {item.User.lastName}</p>
+                                    <p className="datePost">{formatedDate(item.createdAt, item.updatedAt)}</p>
+                                </div>
 
                             {item.User.id_user === userId  || isAdmin ? (
-                            <div className="editPost">
+                                <div className="editPost">
                                 {item.User.id_user === userId  ? (
-                                <button className="editBtn"><Link to={{pathname:'/updatePage', data: {id_post : item.id_post}}}><i className="fas fa-edit"></i></Link></button>
+                                    <button className="editBtn"><Link to={{pathname:'/updatePage', data: {id_post : item.id_post}}}><i className="fas fa-edit"></i></Link></button>
                                 ) : null}
                                 <button onClick={() => {deletePost(item.id_post)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
-                            </div>
+                                </div>
                             ) : null}
                             
-
-                            <div className="postText">
-                                <h1 className="postTitle">{item.title}</h1>
-                                <p className="postContent">{item.content}</p>
-                                <img className="imgPost" src={item.attachment} alt="Illustration"/>
+                                <div className="postText">
+                                    <h1 className="postTitle">{item.title}</h1>
+                                    <p className="postContent">{item.content}</p>
+                                    <img className="imgPost" src={item.attachment} alt="Illustration"/>
+                                </div>
+                                <LikePost id_post={item.id_post} />
+                                <Comments id_post={item.id_post} />
                             </div>
-                            <LikePost id_post={item.id_post} />
-                            <Comments id_post={item.id_post} />
-                        </div>
-                    ))}
-                </section>
-            </main> 
-        )
-    };
+                        ))}
+                    </section>
+                </main> 
+            )
+        };
 
 
 export default FeedPosts;

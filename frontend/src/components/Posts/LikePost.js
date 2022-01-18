@@ -6,13 +6,12 @@ const LikePost = ({id_post}) => {
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
 
-    const [likes, setLikes] = useState({});
+    const [likes, setLikes] = useState("");
     const [addLike, setAddLike] = useState(0);
 
     console.log(id_post);
 
     // Fonction qui récupère les likes
-    useEffect(() => {
     const fetchLikes = () => {
         axios.get(`${process.env.REACT_APP_URL}api/like/count/${id_post}`, {
             headers: {
@@ -21,14 +20,14 @@ const LikePost = ({id_post}) => {
         })
         .then((res) => {
             console.log(res.data);
-            setLikes(res.data);
+            setLikes(res.data.totalLikes);
         })
         .catch((error) => {
             console.log(error);
         })
     }
-
-        fetchLikes()
+    useEffect(() => {
+        fetchLikes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -49,6 +48,7 @@ const LikePost = ({id_post}) => {
             console.log(res.data);
             //setAddLike(res.data)
             setAddLike(res.data);
+            fetchLikes();
         })
         .catch((error) => {
             console.log(error);
@@ -57,7 +57,7 @@ const LikePost = ({id_post}) => {
 
     return (
         <section className='likesContainer'>
-            
+            <div className='nbLikes'>{likes}</div>
            
             <button onClick={(e) => {postLike()}}><i className="far fa-thumbs-up"></i></button>
             
