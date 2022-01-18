@@ -301,6 +301,7 @@ label {
 .blocPost .postContainer .imgProfil {
   width: 10%;
   border-radius: 50%;
+  border: 2px solid black;
 }
 
 .blocPost .postContainer .imgPost {
@@ -335,8 +336,21 @@ label {
   color: white;
 }
 
-.blocPost {
+.formPostContainer {
   width: 100%;
+  margin-bottom: 100px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 900px) {
+  .formPostContainer {
+    margin: auto;
+    margin-bottom: 100px;
+    margin-top: 30px;
+  }
+}
+
+.formPostContainer .formPost {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -344,51 +358,44 @@ label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  text-align: center;
-  margin: auto;
-  gap: 2rem;
-}
-
-.blocPost .postContainer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 40%;
-  border: 0rem solid #30475e;
+  margin: auto;
   border-radius: 18px;
   -webkit-box-shadow: 0px 0px 10px black;
           box-shadow: 0px 0px 10px black;
-  margin: auto;
   background-color: #222831;
-  padding: 10px;
+  color: white;
+  padding: 30px;
 }
 
 @media screen and (max-width: 900px) {
-  .blocPost .postContainer {
+  .formPostContainer .formPost {
     width: 95%;
   }
 }
 
-.blocPost .postContainer .postAuthor {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 30px;
-  margin: 1rem;
+.formPostContainer .createPost {
+  color: #ffd0c4;
+  border: 1px solid white;
+  padding: 13px;
+  border-radius: 10px;
 }
 
-.blocPost .postContainer .imgProfil {
-  width: 10%;
-  border-radius: 50%;
+.formPostContainer #formTitle {
+  width: 100%;
 }
 
-.blocPost .postContainer .postUserName {
-  color: white;
-  margin: 1rem;
+.formPostContainer #formContent {
+  height: 100px;
+  width: 100%;
 }
 
-.blocPost .postContainer .datePost {
-  color: white;
+.formPostContainer #uploadImage {
+  width: 115px;
+  height: 21px;
 }
 
 .footer-basic {
@@ -600,5 +607,59 @@ label {
 .formPostContainer #uploadImage {
   width: 115px;
   height: 21px;
+}
+
+.commentsList {
+  width: 100%;
+  padding: 10px;
+  border-radius: 18px;
+  color: #00162c;
+}
+
+.commentsList .commentsContainer {
+  background-color: #ff7b77;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.commentsList .infoUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.commentsList .createComment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 20px;
+  border: 2px solid #ff7b77;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.commentsList .commentText {
+  font-style: italic;
+  color: white;
+  font-weight: lighter;
+}
+
+.commentsList .commentContent {
+  width: 80%;
 }
 /*# sourceMappingURL=index.css.map */

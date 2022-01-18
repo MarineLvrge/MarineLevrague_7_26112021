@@ -52,9 +52,9 @@ const Profile = () => {
 
 
     return (
-        <section className='profileContainer'>
-            <h1>Votre profil</h1>
-                <div className='postAuthor'>
+        <section className='formPostContainer'>
+            <h1 className='createPost'>Mon profil</h1>
+                <div className='formContent'>
                     <p className='postUserName'>{firstName}</p>
                     <p className='postUserName'>{lastName}</p>
                     <p>Biographie: {bio}</p>

@@ -87,14 +87,19 @@ const GetComments = ({id_post}) => {
     return (
         <div>
             <section className='commentsList'>
+            <div className='createComment'>
+                    <input placeholder='Rédiger un commentaire' className='commentContent' value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <button onClick={() => {
+                        postComment(id_post)}} className='commentBtn'>Publier</button>
+                </div>
             {comments.map((item) => (
                 <div className='commentsContainer' key={item.id_comment}>
 
+                <div className='infoUser'>
                     <img className="imgProfil" src={item.User.profilPicture} alt="Illustration de profil"/>
                     <p className="commentUserName">{item.User.firstName} {item.User.lastName}</p>
-                    <p className='commentText'>{item.comment}</p>
                     <p className="commentDate">{formatedDate(item.createdAt, item.updatedAt)}</p>
-
+                   
                     {item.id_user === userId || isAdmin ? (
                     <div className='editComment'>
                         <button onClick={() => {deleteComment(item.id_comment)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>   
@@ -102,13 +107,11 @@ const GetComments = ({id_post}) => {
                     ) : null}
 
                 </div>
+                <p className='commentText'>"{item.comment}"</p>
+                </div>
                 
             ))}
-                <div className='createComment'>
-                    <input placeholder='Rédiger un commentaire' className='commentContent' value={comment} onChange={(e) => setComment(e.target.value)} />
-                    <button onClick={() => {
-                        postComment(id_post)}} className='commentBtn'>Publier</button>
-                </div>
+
             </section>
             
         </div>

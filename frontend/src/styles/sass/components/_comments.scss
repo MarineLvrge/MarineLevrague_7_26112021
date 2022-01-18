@@ -1,0 +1,36 @@
+.commentsList {
+    width: 100%;
+    padding: 10px;
+    border-radius: 18px;
+    color: $color-3;
+    
+    .commentsContainer {
+        background-color: $color-1;
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .infoUser {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .createComment {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        border: 2px solid $color-1;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    .commentText {
+        font-style: italic;
+        color: white;
+        font-weight: lighter;
+    }
+    .commentContent {
+        width: 80%;
+    }
+}

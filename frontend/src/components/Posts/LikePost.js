@@ -6,8 +6,14 @@ const LikePost = ({id_post}) => {
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
 
-    const [likes, setLikes] = useState("");
-    const [addLike, setAddLike] = useState(0);
+    
+    //const [addLike, setAddLike] = useState(0);
+
+    let countLikes = 0;
+
+    const [likes, setLikes] = useState(0);
+
+    let readLike = false;
 
     console.log(id_post);
 
@@ -20,7 +26,8 @@ const LikePost = ({id_post}) => {
         })
         .then((res) => {
             console.log(res.data);
-            setLikes(res.data.totalLikes);
+            countLikes = res.data.totalLikes;
+            setLikes(countLikes) ;
         })
         .catch((error) => {
             console.log(error);
@@ -28,15 +35,26 @@ const LikePost = ({id_post}) => {
     }
     useEffect(() => {
         fetchLikes();
+        isItLike();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Fonction qui poste un like
     const postLike = () => {
+        readLike = !readLike;
+        let like = 0;
+        if(readLike === true) {
+            like = 1;
+            countLikes++
+        } else {
+            countLikes--
+        }
         const data = {
             id_user : userId,
-            like : 1,
+            like : like,
         };
+        console.log(`readlike ${readLike}`);
+        console.log(`like ${like}`);
         axios.post(`${process.env.REACT_APP_URL}api/like/${id_post}`, data, {
             headers: {
                 'Accept': 'application/json',
@@ -46,20 +64,42 @@ const LikePost = ({id_post}) => {
         })
         .then((res) => {
             console.log(res.data);
-            //setAddLike(res.data)
-            setAddLike(res.data);
-            fetchLikes();
+            //fetchLikes();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    // Fonction qui stocke le statut des likes
+    const isItLike = () => {
+        const data = {
+            id_user : userId
+        }
+        axios.post(`${process.env.REACT_APP_URL}api/like/read/${id_post}`, data, {
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            console.log(res.data);
+            if(res.data.like === 1) {
+                readLike = true;
+            }
+            console.log(`readlike lecture ${readLike}`);
         })
         .catch((error) => {
             console.log(error);
         })
     }
 
+    
+
     return (
         <section className='likesContainer'>
             <div className='nbLikes'>{likes}</div>
            
-            <button onClick={(e) => {postLike()}}><i className="far fa-thumbs-up"></i></button>
+            <button className='btnLike' onClick={(e) => {postLike()}}><i className="far fa-thumbs-up"></i></button>
             
         </section>
     );

@@ -1,40 +1,43 @@
-.blocPost {
+.formPostContainer {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: auto;
-    gap: 2rem;
-
-.postContainer {
-    width: 40%;
-    border: 0rem solid $colorBlue;
-    border-radius: 18px;
-    box-shadow: 0px 0px 10px black;
-    margin: auto;
-    background-color: $colorDarkBlue;
-    padding: 10px;
+    margin-bottom: 100px;
+    margin-top: 30px;
     @media screen and (max-width: 900px) {
-        width: 95%;
+        margin: auto;
+        margin-bottom: 100px;
+        margin-top: 30px;
     }
-    .postAuthor {
+
+    .formPost {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        border-radius: 30px;
-        margin: 1rem;
-    }
-
-    .imgProfil {
-        width: 10%;
-        border-radius: 50%;
-    }
-
-    .postUserName {
+        width: 40%;
+        margin: auto;
+        border-radius: 18px;
+        box-shadow: 0px 0px 10px black;
+        background-color: $colorDarkBlue;
         color: white;
-        margin: 1rem;
+        padding: 30px;
+        @media screen and (max-width: 900px) {
+            width: 95%;
+        }
     }
-    .datePost {
-        color: white;
+    .createPost {
+        color: $color-2;
+        border: 1px solid white;
+        padding: 13px;
+        border-radius: 10px;
     }
-}
+    #formTitle {
+        width: 100%;
+    }
+    #formContent {
+        height: 100px;
+        width: 100%;
+    }
+    #uploadImage {
+        width: 115px;
+        height: 21px;
+    }
 }

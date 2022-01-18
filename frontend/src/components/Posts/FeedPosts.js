@@ -83,7 +83,7 @@ import LikePost from "./LikePost";
 
         return(
             <main>
-               <button className="goProfile"><Link to={{pathname:'/profile'}}>Voir mon profil <i class="fas fa-arrow-right"></i></Link></button>
+               <button className="goProfile"><Link to={{pathname:'/profile'}}>Voir mon profil <i className="fas fa-arrow-right"></i></Link></button>
                     <CreatePost />
                         <section className="blocPost">
                             {posts.map((item) => (
