@@ -73,18 +73,19 @@ const Profile = () => {
         })
     }
     }
+    
     return (
         <section className='profileContainer'>
-            <h1 className='createPost'>Mon profil</h1>
+            <h1 className='profilTitle'>Mon profil</h1>
             <div className='editProfile'>
-                    <Link to={{pathname:'/updateProfile'}}><button className="editBtn"><i className="fas fa-edit"></i>Modifier mon compte</button></Link>
-                    <button onClick={() => {deleteProfile(userId)}} className='deleteBtn'><i className="fas fa-trash-alt"></i>Supprimer mon compte</button>
+                    <Link to={{pathname:'/updateProfile'}}><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
+                    <button onClick={() => {deleteProfile(userId)}} className='deleteBtn'><i className="fas fa-trash-alt"></i></button>
                 </div>
 
                 <div className='infoProfile'>
                     <p className='profileName'>{firstName}</p>
                     <p className='profileName'>{lastName}</p>
-                    <p className='profileBio'>Biographie: {bio}</p>
+                    <p className='profileBio'>Biographie: "{bio}"</p>
                     <img className='profileImg' src={profilPicture} alt='Illustration de profil'/>
                 </div>
         </section>

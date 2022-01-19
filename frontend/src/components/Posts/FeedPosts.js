@@ -104,7 +104,7 @@ import LikePost from "./LikePost";
                             ) : null}
                             
                                 <div className="postText">
-                                    <h1 className="postTitle">{item.title}</h1>
+                                    <h2 className="postTitle">{item.title}</h2>
                                     <p className="postContent">{item.content}</p>
                                     <img className="imgPost" src={item.attachment} alt="Illustration"/>
                                 </div>

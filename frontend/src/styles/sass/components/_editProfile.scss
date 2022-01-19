@@ -1,4 +1,4 @@
-.formPostContainer {
+.editProfileContainer {
     width: 100%;
     margin-bottom: 100px;
     margin-top: 30px;
@@ -7,8 +7,7 @@
         margin-bottom: 100px;
         margin-top: 30px;
     }
-
-    .formPost {
+    .editFormProfile {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,30 +22,28 @@
             width: 95%;
         }
     }
-    .createPost {
-        color: $color-2;
-        border: 1px solid white;
-        padding: 13px;
-        border-radius: 10px;
-        @media screen and (max-width: 900) {
-            font-size: .8rem;
+        .editProfile {
+            color: $color-2;
+            border: 1px solid white;
+            padding: 13px;
+            border-radius: 10px;
+            @media screen and (max-width: 900) {
+                font-size: .8rem;
+            }
         }
-    }
+
+}
     #formTitle {
         width: 100%;
     }
     #formContent {
-        height: 100px;
         width: 100%;
     }
     #uploadImage {
         width: 115px;
         height: 21px;
     }
-}
-    .editPost {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
+    #editBio {
+        height: 100px;
+        width: 100%;
     }

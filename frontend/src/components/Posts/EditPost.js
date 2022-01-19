@@ -99,7 +99,7 @@ const EditPost = ({id_post}) => {
             
             </form>
         </div>
-        )
+    )
 };
     
 export default EditPost;

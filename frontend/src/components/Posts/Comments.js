@@ -50,7 +50,9 @@ const GetComments = ({id_post}) => {
     
     // Fonction pour ajouter un commentaire
     function postComment(id_post) {
-
+        if(comment === "") {
+            alert.show('Vous ne pouvez pas poster un commentaire vide')
+        } else {
         axios.post(`${process.env.REACT_APP_URL}api/comments/${id_post}`, 
         JSON.stringify({comment : comment, id_user: userId}), {
             headers: {
@@ -67,7 +69,7 @@ const GetComments = ({id_post}) => {
         })
         .catch((error) => console.log(error));
     }
-
+    }
     // Fonction pour supprimer un commentaire
     function deleteComment(id_comment) {
 

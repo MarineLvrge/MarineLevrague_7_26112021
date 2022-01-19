@@ -87,7 +87,8 @@ const user = req.file ? {
 } : {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    bio: req.body.bio
+    bio: req.body.bio,
+    //profilPicture: `${req.protocol}://${req.get('host')}/images/profilePictures/${req.file.filename}`
 };
 
 User.update(user, 
