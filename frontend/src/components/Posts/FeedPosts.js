@@ -97,7 +97,7 @@ import LikePost from "./LikePost";
                             {item.User.id_user === userId  || isAdmin ? (
                                 <div className="editPost">
                                 {item.User.id_user === userId  ? (
-                                    <button className="editBtn"><Link to={{pathname:'/updatePage', data: {id_post : item.id_post}}}><i className="fas fa-edit"></i></Link></button>
+                                    <Link to={{pathname:'/updatePost', data: {id_post : item.id_post}}}><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
                                 ) : null}
                                 <button onClick={() => {deletePost(item.id_post)}} className="deleteBtn"><i className="fas fa-trash-alt"></i></button>
                                 </div>

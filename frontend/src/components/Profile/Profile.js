@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -50,15 +51,41 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-
+    // Fonction qui supprime le profil utilisateur de la session en cours
+    function deleteProfile() {
+        const response = window.confirm('Souhaitez-vous vraiment supprimer votre compte définitivement ?');
+        const id_user = userId;
+        if(response === true) {
+        axios.delete(`${process.env.REACT_APP_URL}api/auth/accounts/${id_user}`, {
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            },
+        })
+        .then((res) => {
+            console.log(res.data);
+            sessionStorage.clear();
+            if(!sessionStorage.storageToken){
+                window.location = '/connect';
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+    }
     return (
-        <section className='formPostContainer'>
+        <section className='profileContainer'>
             <h1 className='createPost'>Mon profil</h1>
-                <div className='formContent'>
-                    <p className='postUserName'>{firstName}</p>
-                    <p className='postUserName'>{lastName}</p>
-                    <p>Biographie: {bio}</p>
-                    <img className='imgProfil' src={profilPicture} alt='Illustration de profil'/>
+            <div className='editProfile'>
+                    <Link to={{pathname:'/updateProfile'}}><button className="editBtn"><i className="fas fa-edit"></i>Modifier mon compte</button></Link>
+                    <button onClick={() => {deleteProfile(userId)}} className='deleteBtn'><i className="fas fa-trash-alt"></i>Supprimer mon compte</button>
+                </div>
+
+                <div className='infoProfile'>
+                    <p className='profileName'>{firstName}</p>
+                    <p className='profileName'>{lastName}</p>
+                    <p className='profileBio'>Biographie: {bio}</p>
+                    <img className='profileImg' src={profilPicture} alt='Illustration de profil'/>
                 </div>
         </section>
     );

@@ -7,7 +7,8 @@ import connect from './pages/connect';
 import profile from './pages/profile';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import updatePage from './pages/updatePage';
+import updatePost from './pages/updatePost';
+import updateProfile from './pages/updateProfile';
 
 const alertOptions = {
   // you can also just use 'bottom center'
@@ -30,7 +31,8 @@ const App = () => {
                 <Route path='/' exact component={feed} />
                 <Route path='/connect' exact component={connect} />
                 <Route path='/profile' exact component={profile} />
-                <Route path='/updatePage' exact component={updatePage} />
+                <Route path='/updatePost' exact component={updatePost} />
+                <Route path='/updateProfile' exact component={updateProfile} />
                 <Redirect to='/connect' />
               </Switch>
             <Footer />

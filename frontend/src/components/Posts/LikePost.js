@@ -27,7 +27,7 @@ const LikePost = ({id_post}) => {
         .then((res) => {
             console.log(res.data);
             countLikes = res.data.totalLikes;
-            setLikes(countLikes) ;
+            setLikes(countLikes);
         })
         .catch((error) => {
             console.log(error);
@@ -45,9 +45,9 @@ const LikePost = ({id_post}) => {
         let like = 0;
         if(readLike === true) {
             like = 1;
-            countLikes++
+            //countLikes++
         } else {
-            countLikes--
+            //countLikes--
         }
         const data = {
             id_user : userId,
@@ -64,7 +64,7 @@ const LikePost = ({id_post}) => {
         })
         .then((res) => {
             console.log(res.data);
-            //fetchLikes();
+            countLikes = res.data.totalLikes;
         })
         .catch((error) => {
             console.log(error);
@@ -93,7 +93,6 @@ const LikePost = ({id_post}) => {
         })
     }
 
-    
 
     return (
         <section className='likesContainer'>

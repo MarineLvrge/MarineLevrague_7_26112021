@@ -2,7 +2,7 @@ import React  from 'react';
 import EditPost from '../components/Posts/EditPost';
 
 
-const updatePage = (props) => {
+const updatePost = (props) => {
 
     let session = false;
 
@@ -33,4 +33,4 @@ if(!session) {
     };
 }
 
-export default updatePage;
+export default updatePost;
