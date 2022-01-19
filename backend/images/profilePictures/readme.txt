@@ -1,0 +1,1 @@
+Les photos de profil des utilisateurs seront stockées ici

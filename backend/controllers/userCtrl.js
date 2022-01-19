@@ -6,7 +6,7 @@ const User = require ('../models/userModel');
 
 // Création d'un utilisateur
 exports.signup = (req, res, next) => { // Les copiers/collers c'est mal
-    let profilPictureDefault = `${req.protocol}://${req.get('host')}/images/profilePictures/profilpic.webp`;
+    let profilPictureDefault = `${req.protocol}://${req.get('host')}/images/profilePictureStandard/profilpic.webp`;
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({

@@ -1,1 +1,1 @@
-Les images des posts seront stockés dans ce dossier
+Les images des posts seront stockées dans ce dossier

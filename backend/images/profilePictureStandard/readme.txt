@@ -1,0 +1,1 @@
+La photo de profil sera stockée dans ce dossier
