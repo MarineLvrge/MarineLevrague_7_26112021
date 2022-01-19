@@ -80,15 +80,15 @@ const EditProfile = () => {
                 <br />
 
                     <label htmlFor='editProfileName'>Prénom</label>
-                    <input type='text' name='formTitle' id='formTitle' placeholder={editfirstName} onChange={(e) => setEditFirstName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} required />
+                    <input type='text' name='formTitle' id='formTitle' placeholder={editfirstName} onChange={(e) => setEditFirstName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} />
                     <br />
 
                     <label htmlFor='editProfileName'>Nom</label>
-                    <input type='text' name='formContent' id='formContent' placeholder={editLastName} onChange={(e) => setEditLastName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} required />
+                    <input type='text' name='formContent' id='formContent' placeholder={editLastName} onChange={(e) => setEditLastName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} />
                     <br />
             
                     <label htmlFor='formProfileBio'>Biographie</label>
-                    <input type='text' name='formContent' id='editBio' placeholder={editBio} onChange={(e) => setEditBio(e.target.value)} required />
+                    <input type='text' name='formContent' id='editBio' placeholder={editBio} onChange={(e) => setEditBio(e.target.value)} />
                     <br />
 
                     <label htmlFor='image' className='formProfileImg'>Photo de profil</label>
