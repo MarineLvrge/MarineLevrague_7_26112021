@@ -21,9 +21,12 @@
         display: flex;
         align-items: center;
         flex-direction: row;
-        margin: 1rem;
+        justify-content: center;
         @media screen and (max-width: 900px) {
-            flex-wrap: wrap;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
         }
     }
 
@@ -80,4 +83,19 @@
         margin: auto;
         margin-top: 20px;
         padding: 15px;
+    }
+    .likesContainer {
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        width: 20vh;
+        margin: auto;
+        margin-top: 15px;
+        border: 2px solid #ff7b77
+    }
+
+    .btnLike {
+        position: relative;
     }
