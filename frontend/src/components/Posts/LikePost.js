@@ -6,19 +6,17 @@ const LikePost = ({id_post}) => {
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
 
-    
-    //const [addLike, setAddLike] = useState(0);
 
-    let countLikes = 0;
-
+    const [readLike, setReadLike] = useState(false);
     const [likes, setLikes] = useState(0);
 
-    let readLike = false;
+    //let readLike = false;
 
     console.log(id_post);
 
     // Fonction qui récupère les likes
     const fetchLikes = () => {
+        let countLikes = 0;
         axios.get(`${process.env.REACT_APP_URL}api/like/count/${id_post}`, {
             headers: {
                 'Authorization' : `Bearer ${token}`
@@ -41,14 +39,8 @@ const LikePost = ({id_post}) => {
 
     // Fonction qui poste un like
     const postLike = () => {
-        readLike = !readLike;
-        let like = 0;
-        if(readLike === true) {
-            like = 1;
-            //countLikes++
-        } else {
-            //countLikes--
-        }
+        let countLikes = 0;
+        let like = readLike ? 0 : 1;
         const data = {
             id_user : userId,
             like : like,
@@ -64,7 +56,10 @@ const LikePost = ({id_post}) => {
         })
         .then((res) => {
             console.log(res.data);
-            countLikes = res.data.totalLikes;
+            countLikes = likes;
+            res.data.message === 'Like' ? countLikes++ : countLikes--;
+            setReadLike(like);
+            setLikes(countLikes);
         })
         .catch((error) => {
             console.log(error);
@@ -84,7 +79,7 @@ const LikePost = ({id_post}) => {
         .then((res) => {
             console.log(res.data);
             if(res.data.like === 1) {
-                readLike = true;
+                setReadLike(true);
             }
             console.log(`readlike lecture ${readLike}`);
         })
@@ -98,8 +93,7 @@ const LikePost = ({id_post}) => {
         <section className='likesContainer'>
             <div className='nbLikes'>{likes}</div>
            
-            <button className='btnLike' onClick={(e) => {postLike()}}><i className="far fa-thumbs-up"></i></button>
-            
+            <button className='btnLike' onClick={(e) => { postLike() }}><i className={`far ${readLike ? 'fa-thumbs-down' :'fa-thumbs-up' }`}></i></button>            
         </section>
     );
 };

@@ -58,7 +58,7 @@ const CreatePost = () => {
                     <br />
 
                     <label htmlFor='formContent'>Texte</label>
-                    <input type='text' name='formContent' id='formContent' placeholder='Quoi de neuf ?' onChange={(e) => setContent(e.target.value)} required />
+                    <textarea type='text' name='formContent' id='formContent' placeholder='Quoi de neuf ?' onChange={(e) => setContent(e.target.value)} required></textarea>
                     <br />
             
                     <label htmlFor='image' className='formImage'>Image</label>
