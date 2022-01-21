@@ -20,7 +20,6 @@ const LikePost = ({id_post}) => {
             }
         })
         .then((res) => {
-            console.log(res.data);
             countLikes = res.data.totalLikes;
             setLikes(countLikes);
         })
@@ -51,7 +50,6 @@ const LikePost = ({id_post}) => {
             }
         })
         .then((res) => {
-            console.log(res.data);
             countLikes = likes;
             res.data.message === 'Like' ? countLikes++ : countLikes--;
             setReadLike(like);
@@ -73,7 +71,6 @@ const LikePost = ({id_post}) => {
             }
         })
         .then((res) => {
-            console.log(res.data);
             if(res.data.like === 1) {
                 setReadLike(true);
             }

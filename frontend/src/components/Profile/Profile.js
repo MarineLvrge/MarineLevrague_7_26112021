@@ -35,7 +35,6 @@ const Profile = () => {
                     'Authorization' : `Bearer ${token}`},
             })
             .then((res) => {
-                console.log(res.data);
                 setFirstName(res.data.firstName);
                 setLastName(res.data.lastName);
                 setBio(res.data.bio);

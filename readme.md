@@ -15,11 +15,11 @@ Then, you can clone the repository.
 
 ## Setup
 
-Configure your `database` in the file `backend/config/sequelize.js`.
+You will have to create your own .env file to add your environment variables and your own token.
+
+Configure your `database` in the file `backend/config/.env`.
 
 You have an example in the file at `backend/config/.env.example`.
-
-You will have to create your own .env file to add your environment variables and your own token.
 
 ```
     DB_HOST='localhost'
@@ -50,6 +50,8 @@ Run the server:
 
 ## Setup
 
+From the folder `frontend`, you will find a .env file which contains the 'REACT_APP_URL' environment variable that you will have to adapt to your API port.
+
 From the folder `frontend`:
 
 ```
@@ -68,4 +70,4 @@ Run the server:
 
 The website only accept email adress '@groupomania.com' to ensure that only members of Groupomania Company can register, so you will have to specify that when you register.
 
-To create a moderator account, you will have to integrate manually on the database by placing the user column 'isAdmin' on 'true', in order to avoid problems related to the security of the application.
+To create a moderator account, you will have to integrate manually on the database by placing the user column 'isAdmin' on '1', in order to avoid problems related to the security of the application.

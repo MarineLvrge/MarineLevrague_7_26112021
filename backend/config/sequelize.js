@@ -12,7 +12,8 @@ const configDB = {
 
 const sequelize = new Sequelize (configDB.name, configDB.user, configDB.password, {
     host: configDB.host,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
 });
 
 // Connexion à la DB

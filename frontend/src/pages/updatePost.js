@@ -10,12 +10,7 @@ const updatePost = (props) => {
     window.location = '/connect';
     } else session = true;
 
-    console.log(props.location.data.id_post);
-
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
+    //console.log(props.location.data.id_post);
 
     const id_post = props.location.data.id_post;
 

@@ -60,7 +60,6 @@ const GetComments = ({id_post}) => {
                 'Authorization' : `Bearer ${token}`}
         })
         .then((res) => {
-            console.log(res.data);
             setComment(res.data);
             alert.show('Votre commentaire a bien été publié!')
             fetchComments();

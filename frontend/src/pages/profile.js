@@ -9,11 +9,6 @@ const profil = () => {
     window.location = '/connect';
     } else session = true;
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
-
         if(!session) {
             <div>Vous n'êtes pas autorisé à voir ce contenu</div>
         } else {

@@ -88,7 +88,7 @@ const EditProfile = () => {
                     <br />
             
                     <label htmlFor='formProfileBio'>Biographie</label>
-                    <input type='text' name='formContent' id='editBio' placeholder={editBio} onChange={(e) => setEditBio(e.target.value)} />
+                    <textarea type='text' name='formContent' id='editBio' placeholder={editBio} onChange={(e) => setEditBio(e.target.value)}></textarea>
                     <br />
 
                     <label htmlFor='image' className='formProfileImg'>Photo de profil</label>

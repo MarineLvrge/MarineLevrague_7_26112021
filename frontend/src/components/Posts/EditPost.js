@@ -7,8 +7,6 @@ const EditPost = ({id_post}) => {
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
 
     const [editTitle, setEditTitle] = useState(null);
     const [editContent, setEditContent] = useState(null);
@@ -25,7 +23,6 @@ const EditPost = ({id_post}) => {
             }
         })
         .then((res) => {
-            console.log(res.data);
             setEditTitle(res.data.title);
             setEditContent(res.data.content);
 

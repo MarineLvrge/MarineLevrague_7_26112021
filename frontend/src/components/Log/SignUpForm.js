@@ -25,7 +25,6 @@ const onSubmit =  data => {
     .catch(err => { 'Erreur dans la soumission du formulaire d\'inscription'});
 }
 
-console.log(errors);
 
     return (
         <>
