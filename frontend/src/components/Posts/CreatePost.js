@@ -10,8 +10,8 @@ const CreatePost = () => {
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
+    //console.log(userId);
+    //console.log(token);
 
     const alert = useAlert();
  
@@ -23,10 +23,6 @@ const CreatePost = () => {
         data.append('image', image);
         data.append('id_user', userId);
 
-        console.log(title);
-        console.log(content);
-        console.log(image);
-        console.log(userId);
 
         axios.post(`${process.env.REACT_APP_URL}api/posts`, data , {
             headers: { 

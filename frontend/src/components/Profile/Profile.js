@@ -19,8 +19,8 @@ const Profile = () => {
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
+    //console.log(userId);
+    //console.log(token);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");

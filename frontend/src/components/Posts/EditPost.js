@@ -19,7 +19,6 @@ const EditPost = ({id_post}) => {
 
     useEffect(() => {
     function getOnePost() {
-        console.log("getonepost s'execute ")
         axios.get(`${process.env.REACT_APP_URL}api/posts/${id_post}`, {
             headers: {
                 'Authorization' : `Bearer ${token}`

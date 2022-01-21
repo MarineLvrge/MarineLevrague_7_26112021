@@ -26,8 +26,8 @@ import LikePost from "./LikePost";
         const userId = JSON.parse (sessionStorage.storageToken).userId;
         const token = JSON.parse (sessionStorage.storageToken).token;
         const isAdmin = JSON.parse(sessionStorage.storageToken).isAdmin;
-        console.log(userId);
-        console.log(token);
+        //console.log(userId);
+        //console.log(token);
 
         const [posts, setPosts] = useState([]);
 
@@ -42,7 +42,7 @@ import LikePost from "./LikePost";
             } catch(error) {
                 throw error;
             }
-            console.log(res);
+            //console.log(res);
             setPosts(res.data);
     }
             
@@ -50,8 +50,7 @@ import LikePost from "./LikePost";
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [`${token}`]);
     
-    console.log(posts);
-
+    
     // Fonction pour supprimer un post
     function deletePost(id_post) {
 

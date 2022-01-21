@@ -9,8 +9,8 @@ const GetComments = ({id_post}) => {
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
     const isAdmin = JSON.parse (sessionStorage.storageToken).isAdmin;
-    console.log(userId);
-    console.log(token);
+    //console.log(userId);
+    //console.log(token);
 
     // Fonction qui formate la date
     function formatedDate(createdAt, updatedAt) {
@@ -27,7 +27,6 @@ const GetComments = ({id_post}) => {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
 
-    console.log(id_post)
     
     // Fonction qui récupère les commentaires
     const fetchComments = () => {
@@ -38,7 +37,7 @@ const GetComments = ({id_post}) => {
         })
         .then((res) => {
             setComments(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((error) => console.log(error));
     }

@@ -8,8 +8,8 @@ const EditProfile = () => {
 
     const userId = JSON.parse (sessionStorage.storageToken).userId;
     const token = JSON.parse (sessionStorage.storageToken).token;
-    console.log(userId);
-    console.log(token);
+    //console.log(userId);
+    //console.log(token);
 
     const [editfirstName, setEditFirstName] = useState("");
     const [editLastName, setEditLastName] = useState("");
@@ -80,11 +80,11 @@ const EditProfile = () => {
                 <br />
 
                     <label htmlFor='editProfileName'>Prénom</label>
-                    <input type='text' name='formTitle' id='formTitle' placeholder={editfirstName} onChange={(e) => setEditFirstName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} />
+                    <input type='text' name='formTitle' id='formTitle' placeholder={editfirstName} onChange={(e) => setEditFirstName(e.target.value)} /*pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)}*/ />
                     <br />
 
                     <label htmlFor='editProfileName'>Nom</label>
-                    <input type='text' name='formContent' id='formContent' placeholder={editLastName} onChange={(e) => setEditLastName(e.target.value)} pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)} />
+                    <input type='text' name='formContent' id='formContent' placeholder={editLastName} onChange={(e) => setEditLastName(e.target.value)} /*pattern={(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g)}*/ />
                     <br />
             
                     <label htmlFor='formProfileBio'>Biographie</label>

@@ -10,9 +10,6 @@ const LikePost = ({id_post}) => {
     const [readLike, setReadLike] = useState(false);
     const [likes, setLikes] = useState(0);
 
-    //let readLike = false;
-
-    console.log(id_post);
 
     // Fonction qui récupère les likes
     const fetchLikes = () => {
@@ -45,8 +42,7 @@ const LikePost = ({id_post}) => {
             id_user : userId,
             like : like,
         };
-        console.log(`readlike ${readLike}`);
-        console.log(`like ${like}`);
+
         axios.post(`${process.env.REACT_APP_URL}api/like/${id_post}`, data, {
             headers: {
                 'Accept': 'application/json',
@@ -81,7 +77,6 @@ const LikePost = ({id_post}) => {
             if(res.data.like === 1) {
                 setReadLike(true);
             }
-            console.log(`readlike lecture ${readLike}`);
         })
         .catch((error) => {
             console.log(error);
