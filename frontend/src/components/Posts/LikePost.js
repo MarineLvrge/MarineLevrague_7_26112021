@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
 
 const LikePost = ({id_post}) => {
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-
+    let storageToken = sessionStorage.getItem('storageToken');
+    let token = JSON.parse(storageToken).token;
+    let decodedUser = jwt_decode(token);
+    let userId = decodedUser.userId;
 
     const [readLike, setReadLike] = useState(false);
     const [likes, setLikes] = useState(0);

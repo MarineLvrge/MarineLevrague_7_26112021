@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
+import jwt_decode from 'jwt-decode';
 
 const GetComments = ({id_post}) => {
 
     const alert = useAlert();
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-    const isAdmin = JSON.parse (sessionStorage.storageToken).isAdmin;
-    //console.log(userId);
-    //console.log(token);
+    let token = JSON.parse(sessionStorage.storageToken).token;
+    let decodedUser = jwt_decode(token);
+    let isAdmin = decodedUser.isAdmin;
+    let userId = decodedUser.userId;
 
     // Fonction qui formate la date
     function formatedDate(createdAt, updatedAt) {

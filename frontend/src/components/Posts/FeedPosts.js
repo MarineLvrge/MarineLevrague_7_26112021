@@ -5,6 +5,7 @@ import CreatePost from "./CreatePost";
 import Comments from "./Comments";
 import { useAlert } from 'react-alert';
 import LikePost from "./LikePost";
+import jwt_decode from 'jwt-decode';
 
     const FeedPosts = () => {
 
@@ -23,11 +24,10 @@ import LikePost from "./LikePost";
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
     
-        const userId = JSON.parse (sessionStorage.storageToken).userId;
-        const token = JSON.parse (sessionStorage.storageToken).token;
-        const isAdmin = JSON.parse(sessionStorage.storageToken).isAdmin;
-        //console.log(userId);
-        //console.log(token);
+        let token = JSON.parse(sessionStorage.storageToken).token;
+        let decodedUser = jwt_decode(token);
+        let isAdmin = decodedUser.isAdmin;
+        let userId = decodedUser.userId;
 
         const [posts, setPosts] = useState([]);
 

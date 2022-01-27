@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useAlert } from 'react-alert';
+import jwt_decode from 'jwt-decode';
 
 const CreatePost = () => {
 
@@ -8,10 +9,9 @@ const CreatePost = () => {
     const [content, setContent] = useState(null);
     const [image, setImage] = useState(null);
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-    //console.log(userId);
-    //console.log(token);
+    let token = JSON.parse(sessionStorage.storageToken).token;
+    let decodedUser = jwt_decode(token);
+    let userId = decodedUser.userId;
 
     const alert = useAlert();
  

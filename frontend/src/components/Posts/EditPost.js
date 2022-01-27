@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
+import jwt_decode from 'jwt-decode';
 
 
 const EditPost = ({id_post}) => {
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
+    let storageToken = sessionStorage.getItem('storageToken');
+    let token = JSON.parse(storageToken).token;
+    let decodedUser = jwt_decode(token);
+    let userId = decodedUser.userId;
 
     const [editTitle, setEditTitle] = useState(null);
     const [editContent, setEditContent] = useState(null);

@@ -18,11 +18,9 @@ function SignInForm() {
         .then(res => {
             console.log(res.data);
             const storageToken = {
-                "userId": res.data.userId,
                 "token": res.data.token,
-                "isAdmin": res.data.isAdmin
             }
-            sessionStorage.setItem('storageToken', JSON.stringify(storageToken));
+            sessionStorage.setItem('storageToken', JSON.stringify(storageToken));     
             window.location = '/';
         })
         .catch(function(error){

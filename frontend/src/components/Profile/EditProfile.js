@@ -1,15 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
+import jwt_decode from 'jwt-decode';
 
 const EditProfile = () => {
 
     const alert = useAlert();
 
-    const userId = JSON.parse (sessionStorage.storageToken).userId;
-    const token = JSON.parse (sessionStorage.storageToken).token;
-    //console.log(userId);
-    //console.log(token);
+    let storageToken = sessionStorage.getItem('storageToken');
+    let token = JSON.parse(storageToken).token;
+    let decodedUser = jwt_decode(token);
+    let userId = decodedUser.userId;
 
     const [editfirstName, setEditFirstName] = useState("");
     const [editLastName, setEditLastName] = useState("");

@@ -42,10 +42,8 @@ exports.login = (req, res, next) => { // Les copiers/collers c'est mal
                         return res.status(401).json({ error: 'Mot de passe incorrect' });
                     }
                     res.status(200).json({ 
-                        userId: user.id_user,
-                        isAdmin: user.isAdmin,
                         token: jwt.sign(
-                            { userId: user.id_user },
+                            { userId: user.id_user, isAdmin: user.isAdmin },
                             `${process.env.SECRET_TOKEN}`,
                             { expiresIn: '24h' }
                         )
